@@ -14,9 +14,17 @@ friends = db.Table('friends',
 
 class User(db.Model):   #UserMixin here
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(32), unique=True, nullable=False)
-    account_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    username = db.Column(db.String(32), unique=True)
+    email = db.Column(db.String(128), unique=True)
+    password = db.Column(db.String(256))
+    timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     online = db.Column(db.Boolean, default=False)
+    image = db.Column(db.String(256), default='https://pbs.twimg.com/profile_images/723681919561437186/1Zi2ShOs.jpg')
+    verified = db.Column(db.Boolean, default=False)
+    current_room = db.Column(db.String(128), default='')
+    about_me_short = db.Column(db.String(128), default='')
+    about_me_long = db.Column(db.String(420), default='')
+    custom_status = db.Column(db.String(32), default='')
 
     messages = db.relationship('Message',
                                 foreign_keys='Message.recipient_id',
@@ -33,7 +41,7 @@ class User(db.Model):   #UserMixin here
                                         backref=db.backref('friends', lazy='dynamic'), lazy='dynamic')
 
     def __repr__(self):
-        return f'{self.id}, {self.username}, {self.account_created}'
+        return f'{self.id}'
 
     
     def add_friend(self, user):
