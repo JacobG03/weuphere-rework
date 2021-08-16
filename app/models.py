@@ -95,6 +95,7 @@ class Room(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     users = db.relationship('User', secondary=rooms, lazy='subquery',
                             backref=db.backref('in_rooms', lazy=True))
+    last_active = db.Column(db.DateTime)
 
 """
 @login.user_loader
