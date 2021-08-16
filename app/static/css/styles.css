@@ -103,8 +103,7 @@ body {
 .container {
     position: relative;
     width: 100vw;
-    height: calc(100vh - 4rem);
-    margin-top: 4rem;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -118,6 +117,7 @@ body {
     flex-direction: column;
     box-shadow: var(--main-color-shadow);
     border-radius: var(--border-radius);
+    margin-top: 4rem;
 }
 
 .form-title {
