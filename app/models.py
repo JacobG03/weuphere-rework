@@ -12,6 +12,13 @@ friends = db.Table('friends',
     db.Column('friend2_id', db.Integer, db.ForeignKey('user.id'))
 )
 
+
+rooms = db.Table('rooms', 
+    db.Column('room_id', db.Integer, db.ForeignKey('room.id'), primary_key=True),
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True)
+)
+
+
 class User(db.Model):   #UserMixin here
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), unique=True)
@@ -83,6 +90,11 @@ class Message(db.Model):
     def __repr__(self):
         return '<Message {}>'.format(self.body)
 
+
+class Room(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    users = db.relationship('User', secondary=rooms, lazy='subquery',
+                            backref=db.backref('in_rooms', lazy=True))
 
 """
 @login.user_loader

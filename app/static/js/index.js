@@ -42,4 +42,10 @@ function loadNavbarData() {
     });
 }
 
-loadNavbarData();
+
+function loadPageData() {
+    loadNavbarData();
+}
+
+
+loadPageData();
