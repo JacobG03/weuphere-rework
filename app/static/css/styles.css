@@ -8,6 +8,7 @@
     --text-color: #fff;
     --accent-color: #00C5A1;
     --main-color-shadow: 0px 4px 20px 2px rgba(0, 0, 0, 0.5);
+    --background-color-shadow: 0px 4px 20px 2px rgba(255, 255, 255, 0.5);
     --border-radius: 8px;
     --speed: 300ms;
 }
@@ -22,6 +23,7 @@ body {
     width: 100vw;
     height: 100vh;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 #navbar {
@@ -37,7 +39,10 @@ body {
     color: var(--text-color);
     box-shadow: var(--main-color-shadow);
     z-index: 10;
+    transition: var(--speed) ease-in-out;
+    top: 0;
 }
+
 
 .navbar-home {
     height: 4rem;
@@ -98,26 +103,16 @@ body {
 .container {
     position: relative;
     width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 4rem 1fr;
-}
-
-.content-middle {
-    width: 100%;
-    height: 100%;
-    grid-column: 2 / 3;
-    grid-row: 2 / 3 ;
+    height: calc(100vh - 4rem);
+    margin-top: 4rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .form {
-    margin-top: 2rem;
     width: 740px;
-    height: 740px;
+    height: fit-content;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -281,6 +276,7 @@ body {
 
 #register-form {
     background-color: var(--background-color);
+    box-shadow: var(--background-color-shadow);
 }
 
 #register-form > span {
@@ -303,4 +299,11 @@ body {
 
 #register-input5 {
     height: 4rem;
+}
+
+
+#navbar.inverted {
+    background-color: var(--background-color);
+    box-shadow: var(--background-color-shadow);
+    color: var(--main-color);
 }
