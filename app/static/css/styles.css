@@ -21,6 +21,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     width: 100vw;
     height: 100vh;
+    overflow-x: hidden;
 }
 
 #navbar {
@@ -114,6 +115,7 @@ body {
 }
 
 .form {
+    margin-top: 2rem;
     width: 740px;
     height: 740px;
     display: flex;
@@ -262,4 +264,43 @@ body {
 
 .option-redirect:hover {
     color: var(--accent-color);
+}
+
+
+/** Register page */
+
+
+#register-container {
+    display: none;
+}
+
+#register-container.container.show {
+    display: grid;
+    background-color: var(--main-color);
+}
+
+#register-form {
+    background-color: var(--background-color);
+}
+
+#register-form > span {
+    padding: 10px 20px;
+    font-size: 1.5rem;
+}
+
+#register-form > span:first-of-type {
+    padding: 20px 20px;
+    font-size: 2.5rem;
+}
+
+#register-form > input {
+    margin-bottom: 20px;
+}
+
+#register-form > input:last-of-type {
+    margin-bottom: 40px;
+}
+
+#register-input5 {
+    height: 4rem;
 }
