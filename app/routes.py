@@ -9,6 +9,14 @@ def index():
     return render_template('index.html')
 
 
+
+@app.get('/login')
+@app.post('/login')
+def login():
+    return render_template('login.html')
+
+
+
 @app.post('/api/user')
 def user():
     user = User.query.first() # Change to current_user

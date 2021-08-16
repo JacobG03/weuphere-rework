@@ -97,6 +97,7 @@ class Room(db.Model):
                             backref=db.backref('in_rooms', lazy=True))
     last_active = db.Column(db.DateTime)
 
+
 """
 @login.user_loader
 def load_user(id):
