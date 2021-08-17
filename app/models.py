@@ -96,7 +96,7 @@ class Room(db.Model):
     users = db.relationship('User', secondary=rooms, lazy='subquery',
                             backref=db.backref('in_rooms', lazy=True))
     last_active = db.Column(db.DateTime)
-
+    
 
 """
 @login.user_loader

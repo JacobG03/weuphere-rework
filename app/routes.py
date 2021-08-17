@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, url_for, request, jsonify
+from flask import render_template, url_for, request, jsonify, redirect
 from app.models import User
 
 
@@ -14,7 +14,6 @@ def index():
 @app.post('/login')
 def login():
     return render_template('login.html')
-
 
 
 @app.post('/api/user')

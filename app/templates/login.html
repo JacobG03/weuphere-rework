@@ -13,7 +13,7 @@
         <h1 id='home'>We Up Here</h1>
     </div>
 </div>
-<div class='container' id='login-container'>
+<div class='container show' id='login-container'>
     <div class='form' id='login-form'>
         <span class='form-title'>Sign In</span>
         <span class='input-label'>Login:</span>
@@ -39,6 +39,23 @@
         </div>
     </div>
 </div>
+<div class='container' id='confirm-container'>
+    <div class='form' id='confirm-form'>
+        <span class='form-text'>An email has been sent to</span>
+        <span class='form-text' id='censored-email'>***g03@gmail.com</span>
+        <span class='form-text'>Enter the code:</span>
+        <div class='input-code'>
+            <input class='input-number' id='confirm-input1' type='text' maxlength='1'>
+            <input class='input-number' id='confirm-input2' type='text' maxlength='1'>
+            <input class='input-number' id='confirm-input3' type='text' maxlength='1'>
+            <input class='input-number' id='confirm-input4' type='text' maxlength='1'>
+            <input class='input-number' id='confirm-input5' type='text' maxlength='1'>
+            <input class='input-number' id='confirm-input6' type='text' maxlength='1'>
+        </div>
+        <span class='form-text'>To finish registering your account.</span>
+        <span class='form-text' id='form-resend-email'>Resend Email</span>
+    </div>
+</div>
 <div class='container' id='register-container'>
     <div class='content-middle'>
         <div class='form' id='register-form'>
@@ -49,8 +66,8 @@
             <input class='form-input' id='register-input2' type='text' placeholder='Enter your email here...'>
             <span class='input-label'>Password:</span>
             <input class='form-input' id='register-input3' type='password' placeholder='Enter your password here...'>
-            <span class='input-label'>Password:</span>
-            <input class='form-input' id='register-input4' type='password' placeholder='Enter your password here...'>
+            <span class='input-label'>Repeat Password:</span>
+            <input class='form-input' id='register-input4' type='password' placeholder='Enter your password again here...'>
             <div class='btn' id='register-input5'>Sign Up</div>
             <div class='form-options'>
                 <div class='form-option' id='register-form-option'>
