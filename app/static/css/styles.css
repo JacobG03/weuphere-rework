@@ -26,8 +26,8 @@ body {
     scroll-behavior: smooth;
 }
 
-#navbar {
-    position: fixed;
+.navbar {
+    position: static;
     width: calc(100vw - 20px);
     height: 4rem;
     display: flex;
@@ -39,8 +39,8 @@ body {
     color: var(--text-color);
     box-shadow: var(--main-color-shadow);
     z-index: 10;
-    transition: var(--speed) ease-in-out;
     top: 0;
+    transition: var(--speed);
 }
 
 
@@ -50,9 +50,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 27%;
+    margin-right: 29%;
     cursor: default;
     padding: 0px 10px;
+    transition: var(--speed) ease-in-out;
 }
 
 #home {
@@ -103,7 +104,7 @@ body {
 .container {
     position: relative;
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 4rem);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -117,7 +118,6 @@ body {
     flex-direction: column;
     box-shadow: var(--main-color-shadow);
     border-radius: var(--border-radius);
-    margin-top: 4rem;
 }
 
 .form-title {
@@ -270,8 +270,9 @@ body {
 }
 
 #register-container.container.show {
-    display: grid;
+    display: flex;
     background-color: var(--main-color);
+    height: 100vh;
 }
 
 #register-form {
@@ -302,7 +303,7 @@ body {
 }
 
 
-#navbar.inverted {
+#navbar-login.inverted {
     background-color: var(--background-color);
     box-shadow: var(--background-color-shadow);
     color: var(--main-color);
