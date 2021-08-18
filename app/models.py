@@ -1,6 +1,6 @@
 from app import db, login
+from flask_login import UserMixin
 from datetime import datetime
-
 
 followers = db.Table('followers',
     db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
@@ -19,7 +19,7 @@ rooms = db.Table('rooms',
 )
 
 
-class User(db.Model):   #UserMixin here
+class User(UserMixin, db.Model):   #UserMixin here
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), unique=True)
     email = db.Column(db.String(128), unique=True)

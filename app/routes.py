@@ -1,45 +1,72 @@
-from flask_login.utils import login_required
 from app import app
-from flask import render_template, url_for, request, jsonify, redirect
-from flask_login import login_required, current_user
+from flask import json, render_template, url_for, request, jsonify, redirect, session, Response
+from flask_login import login_required, current_user, logout_user, login_user
 from app.models import User
 
 
 @app.get('/')
 @app.post('/')
+@login_required
 def index():
-    if current_user.is_anonymous:
-        return redirect('login')
     return render_template('index.html')
 
 
 @app.get('/login')
 @app.post('/login')
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     return render_template('login.html')
 
 
-@app.post('/api/users/current_user')
-def user():
-    #! return current user
-    user = User.query.first() # Change to current_user
-    user_data = {
-        'id': user.id,
-        'username': user.username,
-        'image': user.image,
-        'online': user.online,
-        'verified': user.verified,
-        'current_room': user.current_room,
-        'custom_status': user.custom_status,
-        'about_me_short': user.about_me_short,
-        'about_me_long': user.about_me_long
-    }
+@app.post('/api/users/login')
+def user_login():
+    login_data = request.get_json()
+    user = User.query.filter_by(email=login_data['email']).first()
+    if not user:
+        return {'success': False, 'message': 'Incorrect email or password.'}
+    if user.password != login_data['password']:
+        return {'success': False, 'message': 'Incorrect email or password.'}
 
-    return user_data
+    login_user(user, remember=login_data['remember_me'])
+    return {'success': True}
+
+
+@app.post('/api/users/register')
+def user_register():
+    return True
+
+
+@app.post('/api/users/logout')
+@login_required
+def user_logout():
+    logout_user()
+    return {'success': True}
+
+
+@app.post('/api/users/current_user')
+def get_current_user():
+    """
+    if current_user.is_anonymous:
+        return Response(
+            'Could not verify your access level for that URL.\n'
+            'You have to login with proper credentials', 401)
+    """
+    return {
+        'id': current_user.id,
+        'username': current_user.username,
+        'image': current_user.image,
+        'online': current_user.online,
+        'verified': current_user.verified,
+        'current_room': current_user.current_room,
+        'custom_status': current_user.custom_status,
+        'about_me_short': current_user.about_me_short,
+        'about_me_long': current_user.about_me_long
+    }
 
 
 @app.post('/api/users/users')
-def choose_user(username):
+def get_users(username):
     # !send list of usernames
     # for user in usernames
     # ! return dict with these users data
@@ -57,7 +84,7 @@ def choose_user(username):
 
 
 @app.post('/api/users/current_user/friends')
-def friends():
+def get_current_user_friends():
     #! return current_user friends
     friends_data = []
 

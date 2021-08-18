@@ -1,4 +1,4 @@
-/* Animations */
+// Elements
 const login_container = document.querySelector('#login-container');
 const register_container = document.querySelector('#register-container');
 const confirm_container = document.querySelector('#confirm-container');
@@ -6,9 +6,11 @@ const show_register_button = document.querySelector('#option-register');
 const show_login_button = document.querySelector('#option-login');
 const register_button = document.querySelector('#register-input5');
 const navbar = document.querySelector('#navbar-login');
-
 const login_checkbox = document.getElementById('login-input3');
 
+// Url's
+const base_url = 'http://127.0.0.1:5000/'
+const login_url = base_url + 'login'
 
 
 //* Event listeners for navigating to pages
@@ -103,19 +105,10 @@ const login_check = document.getElementsByClassName('form-check')[0];
 
 
 
-login_button.addEventListener('click', () => {
-    data = {
-        'type': 'login',
-        'email': login_email.value,
-        'password': login_password.value,
-        'remember_me': login_check.classList.contains('active')
-    }
-
-    loginUser(data)
-})
+login_button.addEventListener('click', loginUser)
 
 
-async function postData(url = '', data = {}) {
+async function getData(url = '', data = {}) {
     // Default options are marked with *
     const response = await fetch(url, {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -123,7 +116,7 @@ async function postData(url = '', data = {}) {
       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
       credentials: 'same-origin', // include, *same-origin, omit
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       redirect: 'follow', // manual, *follow, error
@@ -132,11 +125,22 @@ async function postData(url = '', data = {}) {
     });
     return response.json(); // parses JSON response into native JavaScript objects
   }
-  
 
-function loginUser(data) {
-    postData(window.location.href, data).then(data => {
-        console.log(data); // JSON data parsed by `data.json()` call
+
+function loginUser() {
+    login_data = {
+        'email': login_email.value,
+        'password': login_password.value,
+        'remember_me': login_check.classList.contains('active')
+    }
+    getData('http://127.0.0.1:5000/api/users/login', login_data).then(data => {
+        console.log(data)
+        if (data['success'] == true) {
+            window.location = ('http://127.0.0.1:5000/')
+            return true
+        }
+        else if (data['message'] == ) {
+
+        }
     })
 }
-
