@@ -1,4 +1,4 @@
-from app import db
+from app import db, login
 from datetime import datetime
 
 
@@ -98,8 +98,7 @@ class Room(db.Model):
     last_active = db.Column(db.DateTime)
     
 
-"""
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
-"""

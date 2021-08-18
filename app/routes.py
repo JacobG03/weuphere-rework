@@ -1,13 +1,16 @@
+from flask_login.utils import login_required
 from app import app
 from flask import render_template, url_for, request, jsonify, redirect
+from flask_login import login_required, current_user
 from app.models import User
 
 
 @app.get('/')
 @app.post('/')
 def index():
+    if current_user.is_anonymous:
+        return redirect('login')
     return render_template('index.html')
-
 
 
 @app.get('/login')
@@ -16,8 +19,9 @@ def login():
     return render_template('login.html')
 
 
-@app.post('/api/user')
+@app.post('/api/users/current_user')
 def user():
+    #! return current user
     user = User.query.first() # Change to current_user
     user_data = {
         'id': user.id,
@@ -34,8 +38,11 @@ def user():
     return user_data
 
 
-@app.post('/api/user/<username>')
+@app.post('/api/users/users')
 def choose_user(username):
+    # !send list of usernames
+    # for user in usernames
+    # ! return dict with these users data
     user = User.query.filter_by(username=username).first()
     user_data = {
         'username': user.username,
@@ -49,8 +56,9 @@ def choose_user(username):
     return user_data
 
 
-@app.post('/api/friends')
+@app.post('/api/users/current_user/friends')
 def friends():
+    #! return current_user friends
     friends_data = []
 
     friends = User.query.first().friends_list.all() # Change to current_user
