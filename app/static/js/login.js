@@ -1,4 +1,4 @@
-// Elements
+//* Const Elements
 const login_container = document.querySelector('#login-container');
 const register_container = document.querySelector('#register-container');
 const confirm_container = document.querySelector('#confirm-container');
@@ -9,9 +9,11 @@ const navbar = document.querySelector('#navbar-login');
 const login_checkbox = document.getElementById('login-input3');
 
 
-// Url's
+//* Urls
 const base_url = 'http://127.0.0.1:5000/';
 const login_url = base_url + 'login';
+
+
 
 
 //* Event listeners for navigating to pages
@@ -31,7 +33,6 @@ function showLogin() {
 register_button.addEventListener('click', registerUser);
 
 
-
 // Get rid of register page on back to top
 window.addEventListener('scroll', () => {
     if (document.documentElement.scrollTop == 0) {
@@ -42,19 +43,10 @@ window.addEventListener('scroll', () => {
 })
 
 
-// For tickin'g remember me on login form
-let login_check = document.getElementsByClassName('form-check')[0];
-login_checkbox.addEventListener('click', () => {
-    if (!login_check.classList.contains('active')) {
-        login_check.classList.add('active');
-    } else {
-        login_check.classList.remove('active');
-    }
-})
 
 
+//* Confirm code input
 const codes = document.querySelectorAll('.input-number')
-
 codes[0].focus()
 
 codes.forEach((code, idx) => {
@@ -80,29 +72,10 @@ codes.forEach((code, idx) => {
 })
 
 
-//* Login Form
-const login_input1 = document.getElementById('login-input1');
-const login_input2 = document.getElementById('login-input2');
-
-let login_inputs = [login_input1, login_input2];
-
-for (let i = 0; i < login_inputs.length; i++) {
-    login_inputs[i].addEventListener('keydown', e => {
-        // Deletes previous error messages
-        let form_error = document.getElementById('login-error');
-        if (form_error.classList.contains('active')) {
-            form_error.classList.remove('active');
-        }
-        
-        // If user presses enter, try to login
-        if (e.keyCode === 13) {
-            loginUser();
-        }
-    })
-}
 
 
-// Default function for fetching data
+
+//* Default function for fetching data
 async function getData(url = '', data = {}) {
     // Default options are marked with *
     const response = await fetch(url, {
@@ -124,6 +97,39 @@ async function getData(url = '', data = {}) {
 
 
 
+//* Login Form
+
+// For tickin'g remember me on login form
+let login_check = document.getElementsByClassName('form-check')[0];
+login_checkbox.addEventListener('click', () => {
+    if (!login_check.classList.contains('active')) {
+        login_check.classList.add('active');
+    } else {
+        login_check.classList.remove('active');
+    }
+})
+
+const login_input1 = document.getElementById('login-input1');
+const login_input2 = document.getElementById('login-input2');
+
+let login_inputs = [login_input1, login_input2];
+
+for (let i = 0; i < login_inputs.length; i++) {
+    login_inputs[i].addEventListener('keydown', e => {
+        // Deletes previous error messages
+        let form_error = document.getElementById('login-error');
+        if (form_error.classList.contains('active')) {
+            form_error.classList.remove('active');
+        }
+        
+        // If user presses enter, try to login
+        if (e.keyCode === 13) {
+            loginUser();
+        }
+    })
+}
+
+
 //* Login
 
 const login_button = document.getElementById('login-input4');
@@ -134,7 +140,7 @@ function loginUser() {
     let login_email = document.getElementById('login-input1');
     let login_password = document.getElementById('login-input2');
     let login_check = document.getElementsByClassName('form-check')[0];
-
+    
     login_data = {
         'email': login_email.value,
         'password': login_password.value,
@@ -166,6 +172,12 @@ function loginUser() {
         }
     })
 }
+
+
+
+
+//* Register form
+
 
 
 //* Register
