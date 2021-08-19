@@ -8,9 +8,10 @@ const register_button = document.querySelector('#register-input5');
 const navbar = document.querySelector('#navbar-login');
 const login_checkbox = document.getElementById('login-input3');
 
+
 // Url's
-const base_url = 'http://127.0.0.1:5000/'
-const login_url = base_url + 'login'
+const base_url = 'http://127.0.0.1:5000/';
+const login_url = base_url + 'login';
 
 
 //* Event listeners for navigating to pages
@@ -42,6 +43,7 @@ window.addEventListener('scroll', () => {
 
 
 // For tickin'g remember me on login form
+let login_check = document.getElementsByClassName('form-check')[0];
 login_checkbox.addEventListener('click', () => {
     if (!login_check.classList.contains('active')) {
         login_check.classList.add('active');
@@ -78,69 +80,109 @@ codes.forEach((code, idx) => {
 })
 
 
+//* Login Form
+const login_input1 = document.getElementById('login-input1');
+const login_input2 = document.getElementById('login-input2');
+
+let login_inputs = [login_input1, login_input2];
+
+for (let i = 0; i < login_inputs.length; i++) {
+    login_inputs[i].addEventListener('keydown', e => {
+        // Deletes previous error messages
+        let form_error = document.getElementById('login-error');
+        if (form_error.classList.contains('active')) {
+            form_error.classList.remove('active');
+        }
+        
+        // If user presses enter, try to login
+        if (e.keyCode === 13) {
+            loginUser();
+        }
+    })
+}
+
+
+// Default function for fetching data
+async function getData(url = '', data = {}) {
+    // Default options are marked with *
+    const response = await fetch(url, {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(data) // body data type must match "Content-Type" header
+    });
+    return response.json(); // parses JSON response into native JavaScript objects
+}
+
+
+
+
+//* Login
+
+const login_button = document.getElementById('login-input4');
+login_button.addEventListener('click', loginUser)
+
+// Send and response to login data
+function loginUser() {
+    let login_email = document.getElementById('login-input1');
+    let login_password = document.getElementById('login-input2');
+    let login_check = document.getElementsByClassName('form-check')[0];
+
+    login_data = {
+        'email': login_email.value,
+        'password': login_password.value,
+        'remember_me': login_check.classList.contains('active')
+    }
+
+    getData('http://127.0.0.1:5000/api/users/login', login_data).then(data => {
+        // If logged in successfuly just redirect page 
+        if (data['success'] == true) {
+            window.location = ('http://127.0.0.1:5000/')
+            return true
+        }
+        // If not logged in, display reason
+        if (data['message']) {
+            let form_error = document.getElementById('login-error');
+            form_error.classList.add('active');
+
+            let error_message = document.getElementById('error-message');
+            if (error_message) {
+                error_message.innerHTML = data['message'];
+                return true;
+            }
+
+            let message = document.createElement('span');
+            message.classList.add('form-error-message');
+            message.id = 'error-message';
+            message.innerHTML = data['message'];
+            form_error.appendChild(message);
+        }
+    })
+}
+
+
+//* Register
+// Send and response to register data
 function registerUser() {
     // Fetching data here
     // Send async request
-            // Depending on answer display:
-            //      Data is not valid, try again
-            //      Display next stage
+    // Depending on answer display:
+    //      Data is not valid, try again
+    //      Display next stage
     navigateToConfirm();
-}
 
+}
 
 function navigateToConfirm() {
     login_container.classList.remove('show');
     confirm_container.classList.add('show');
     navbar.scrollIntoView({behavior: "smooth"});
     setTimeout(() => codes[0].focus(), 900);
-}
-
-
-
-//* Login data
-const login_button = document.getElementById('login-input4');
-const login_email = document.getElementById('login-input1');
-const login_password = document.getElementById('login-input2');
-const login_check = document.getElementsByClassName('form-check')[0];
-
-
-
-login_button.addEventListener('click', loginUser)
-
-
-async function getData(url = '', data = {}) {
-    // Default options are marked with *
-    const response = await fetch(url, {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      mode: 'cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include, *same-origin, omit
-      headers: {
-        'Content-Type': 'application/json',
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      redirect: 'follow', // manual, *follow, error
-      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      body: JSON.stringify(data) // body data type must match "Content-Type" header
-    });
-    return response.json(); // parses JSON response into native JavaScript objects
-  }
-
-
-function loginUser() {
-    login_data = {
-        'email': login_email.value,
-        'password': login_password.value,
-        'remember_me': login_check.classList.contains('active')
-    }
-    getData('http://127.0.0.1:5000/api/users/login', login_data).then(data => {
-        console.log(data)
-        if (data['success'] == true) {
-            window.location = ('http://127.0.0.1:5000/')
-            return true
-        }
-        else if (data['message'] == ) {
-
-        }
-    })
 }

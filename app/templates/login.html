@@ -17,9 +17,11 @@
     <div class='form' id='login-form'>
         <span class='form-title'>Sign In</span>
         <span class='input-label'>Email:</span>
-        <input class='form-input' id='login-input1' type='text' placeholder='Enter your email here...'>
+        <input class='form-input' id='login-input1' type='text' placeholder='Enter your email here...' maxlength='32'>
         <span class='input-label'>Password:</span>
-        <input class='form-input' id='login-input2' type='password' placeholder='Enter your password here...'>
+        <input class='form-input' id='login-input2' type='password' placeholder='Enter your password here...' max='128'>
+        <div class='form-error' id='login-error'>
+        </div>
         <div class='form-remember'>
             <div class='form-checkbox' id='login-input3'>
                 <div class='form-check'></div>

@@ -46,12 +46,10 @@ def user_logout():
 
 @app.post('/api/users/current_user')
 def get_current_user():
-    """
     if current_user.is_anonymous:
         return Response(
             'Could not verify your access level for that URL.\n'
             'You have to login with proper credentials', 401)
-    """
     return {
         'id': current_user.id,
         'username': current_user.username,
