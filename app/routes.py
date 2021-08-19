@@ -65,6 +65,8 @@ def user_register():
     db.session.add(user)
     db.session.commit()
 
+    login_user(user)
+
     return {'success': True}
 
 
