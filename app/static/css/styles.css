@@ -2,10 +2,10 @@
     font-size: 16px;
     --background-color: #fff;
     --main-color: #000;
-    --main-color2: rgb(0, 0, 0, 0.75);
-    --main-color3: rgb(0, 0, 0, 0.50);
-    --main-color4: rgb(0, 0, 0, 0.25);
     --text-color: #fff;
+    --text-color2: rgb(255, 255, 255, 0.75);
+    --text-color3: rgb(255, 255, 255, 0.55);
+    --text-color4: rgb(255, 255, 255, 0.255);
     --accent-color: #00C5A1;
     --warning-color: #e72222;
     --main-color-shadow: 0px 4px 20px 2px rgba(0, 0, 0, 0.5);
@@ -48,12 +48,18 @@ body {
 
 
 #home {
+    height: calc(4rem - 10px);
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 5px 20px;
-    flex-grow: 1;
     transition: var(--speed);
+    cursor: default;
+    font-size: 1.5rem;
+}
+
+#home:hover {
+    color: var(--accent-color);
 }
 
 .navbar-item {
@@ -204,7 +210,7 @@ body {
 
 .form-input::placeholder {
     font-size: 1.5rem;
-    color: var(--main-color4);
+    color: rgb(0, 0, 0, 0.55);
 }
 
 .form-input:focus {
@@ -438,13 +444,6 @@ body {
 }
 
 
-#navbar-login.inverted {
-    background-color: var(--background-color);
-    box-shadow: var(--background-color-shadow);
-    color: var(--main-color);
-}
-
-
 /** Confirm email page */
 #confirm-container {
     display: none;
@@ -509,3 +508,168 @@ body {
     font-size: 1.5rem;
     width: fit-content;
 }
+
+
+/** Index page */
+
+#home-home {
+    position: fixed;
+    width: calc(100% - 40px);
+    padding: 5px 20px;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--speed);
+}
+
+@media only screen and (max-width: 850px) {
+    #home-home {
+        justify-content: flex-start;
+    }
+  }
+
+#container-home {
+    position: fixed;
+    margin-top: 4rem;
+    height: calc(100vh - 4rem);
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#content {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: row;
+}
+
+#content-left {
+    margin-right: 20px;
+    width: calc(22% - 20px);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#content-middle {
+    width: calc(56% - 100px);
+    height: 100%;
+    margin: 0px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#content-top {
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.top-button {
+    flex-grow: 1;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--speed);
+}
+
+.top-button.active {
+    flex-grow: 3;
+    background-color: var(--main-color);
+    box-shadow: var(--main-color-shadow);
+    color: var(--text-color);
+    font-size: 2rem;
+}
+
+.top-button:hover {
+    flex-grow: 2;
+    background-color: var(--main-color);
+    box-shadow: var(--main-color-shadow);
+    color: var(--accent-color);
+    font-size: 2rem;
+}
+
+.main-content {
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    transition: var(--speed);
+}
+
+.main-content.active {
+    display: flex;
+}
+
+#searchbar-box {
+    margin-top: 5px;
+    width: 100%;
+    height: 3rem;
+    background-color: var(--main-color);
+    box-shadow: var(--main-color-shadow);
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+
+#searchbar-box #searchbar {
+    width: calc(90% - 40px);
+    height: calc(3rem - 10px);
+    padding: 5px 20px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    transition: var(--speed);
+}
+
+#searchbar::placeholder {
+    color: var(--text-color3);
+    font-size: 1rem;
+}
+
+#search-box {
+    height: calc(3rem - 10px);
+    width: calc(10% - 20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+}
+
+#search-box > i {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: var(--speed);
+}
+
+#search-box > i:hover {
+    color: var(--accent-color);
+}
+
+#content-right {
+    margin-left: 20px;
+    width: calc(22% - 20px);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
