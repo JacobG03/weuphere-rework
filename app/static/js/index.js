@@ -75,7 +75,6 @@ function loadNavbarData() {
 
 function logoutUser() {
     getData('http://127.0.0.1:5000/api/users/logout', {}).then(data => {
-        console.log(data)
         if (data['success']) {
             window.location = login_url; 
         }
