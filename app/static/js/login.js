@@ -17,20 +17,22 @@ const login_url = base_url + 'login';
 
 
 //* Event listeners for navigating to pages
-show_register_button.addEventListener('click', showRegister);
+if (show_register_button) {
+    show_register_button.addEventListener('click', showRegister);
+}
 function showRegister() {
     register_container.classList.add('show');
     register_container.scrollIntoView({behavior: "smooth"})
 }
 
-
-show_login_button.addEventListener('click', showLogin);
+if (show_login_button) {
+    show_login_button.addEventListener('click', showLogin);
+}
 function showLogin() {
     navbar.scrollIntoView({behavior: "smooth"})
 }
 
 
-register_button.addEventListener('click', registerUser);
 
 
 // Get rid of register page on back to top
@@ -101,13 +103,15 @@ async function getData(url = '', data = {}) {
 
 // For tickin'g remember me on login form
 let login_check = document.getElementsByClassName('form-check')[0];
-login_checkbox.addEventListener('click', () => {
-    if (!login_check.classList.contains('active')) {
-        login_check.classList.add('active');
-    } else {
-        login_check.classList.remove('active');
-    }
-})
+if (login_checkbox) {
+    login_checkbox.addEventListener('click', () => {
+        if (!login_check.classList.contains('active')) {
+            login_check.classList.add('active');
+        } else {
+            login_check.classList.remove('active');
+        }
+    })
+}
 
 const login_input1 = document.getElementById('login-input1');
 const login_input2 = document.getElementById('login-input2');
@@ -115,38 +119,38 @@ const login_input2 = document.getElementById('login-input2');
 let login_inputs = [login_input1, login_input2];
 
 for (let i = 0; i < login_inputs.length; i++) {
-    login_inputs[i].addEventListener('keydown', e => {
-        // Deletes previous error messages
-        let form_error = document.getElementById('login-error');
-        if (form_error.classList.contains('active')) {
-            form_error.classList.remove('active');
-        }
-        
-        // If user presses enter, try to login
-        if (e.keyCode === 13) {
-            loginUser();
-        }
-    })
+    if (login_inputs[i]) {
+        login_inputs[i].addEventListener('keydown', e => {
+            // Deletes previous error messages
+            let form_error = document.getElementById('login-error');
+            if (form_error.classList.contains('active')) {
+                form_error.classList.remove('active');
+            }
+            
+            // If user presses enter, try to login
+            if (e.keyCode === 13) {
+                loginUser();
+            }
+        })
+    }
 }
 
 
 //* Login
 
 const login_button = document.getElementById('login-input4');
-login_button.addEventListener('click', loginUser)
+if (login_button) {
+    login_button.addEventListener('click', loginUser)
+}
 
 // Send and response to login data
 function loginUser() {
-    let login_email = document.getElementById('login-input1');
-    let login_password = document.getElementById('login-input2');
-    let login_check = document.getElementsByClassName('form-check')[0];
-    
     login_data = {
-        'email': login_email.value,
-        'password': login_password.value,
-        'remember_me': login_check.classList.contains('active')
+        'email': document.getElementById('login-input1').value,
+        'password': document.getElementById('login-input2').value,
+        'remember_me': document.getElementsByClassName('form-check')[0].classList.contains('active')
     }
-
+    
     getData('http://127.0.0.1:5000/api/users/login', login_data).then(data => {
         // If logged in successfuly just redirect page 
         if (data['success'] == true) {
@@ -157,13 +161,13 @@ function loginUser() {
         if (data['message']) {
             let form_error = document.getElementById('login-error');
             form_error.classList.add('active');
-
+            
             let error_message = document.getElementById('error-message');
             if (error_message) {
                 error_message.innerHTML = data['message'];
                 return true;
             }
-
+            
             let message = document.createElement('span');
             message.classList.add('form-error-message');
             message.id = 'error-message';
@@ -177,19 +181,71 @@ function loginUser() {
 
 
 //* Register form
+if (register_button) {
+    register_button.addEventListener('click', registerUser);
+}
 
+
+let register_inputs = [
+    document.getElementById('register-input1'),
+    document.getElementById('register-input2'),
+    document.getElementById('register-input3'),
+    document.getElementById('register-input4')
+];
+
+
+for (let i = 0; i < register_inputs.length; i++) {
+    if (register_inputs[i]) {
+        register_inputs[i].addEventListener('keyup', e => { 
+                // If user presses enter, try to login
+            if (e.keyCode === 13) {
+                registerUser();
+            }
+            let id = register_inputs[i].id.slice(-1);
+            let error_box = document.getElementById(`error-box${id}`);
+            if (error_box.classList.contains('active')){
+                error_box.classList.remove('active');
+            }
+        })
+    }
+}
 
 
 //* Register
 // Send and response to register data
 function registerUser() {
-    // Fetching data here
-    // Send async request
-    // Depending on answer display:
-    //      Data is not valid, try again
-    //      Display next stage
-    navigateToConfirm();
 
+    register_data = {
+        'username': document.getElementById('register-input1').value,
+        'email': document.getElementById('register-input2').value,
+        'password1': document.getElementById('register-input3').value,
+        'password2': document.getElementById('register-input4').value
+    }
+
+    getData('http://127.0.0.1:5000/api/users/register', register_data).then(data => {
+        // If account registered, navigate to confirm page
+        if (data['success'] == true) {
+            navigateToConfirm();
+        }
+
+        if (data['username']) {
+            let error_box = document.getElementById('error-box1');
+            error_box.classList.add('active');
+            error_box.lastElementChild.innerHTML = data['username'];
+        }
+
+        if (data['email']) {
+            let error_box2 = document.getElementById('error-box2');
+            error_box2.classList.add('active');
+            error_box2.lastElementChild.innerHTML = data['email'];
+        }
+
+        if (data['password']) {
+            let error_box3 = document.getElementById('error-box3');
+            error_box3.classList.add('active');
+            error_box3.lastElementChild.innerHTML = data['password'];
+        }
+    })
 }
 
 function navigateToConfirm() {
@@ -198,3 +254,19 @@ function navigateToConfirm() {
     navbar.scrollIntoView({behavior: "smooth"});
     setTimeout(() => codes[0].focus(), 900);
 }
+
+
+let navbar_logout = document.getElementById('navbar-logout');
+if (navbar_logout) {
+    navbar_logout.addEventListener('click', logoutUser)
+}
+
+
+function logoutUser() {
+    getData('http://127.0.0.1:5000/api/users/logout', {}).then(data => {
+        if (data['success']) {
+            window.location = login_url; 
+        }
+    })
+}
+

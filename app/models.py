@@ -22,8 +22,8 @@ rooms = db.Table('rooms',
 class User(UserMixin, db.Model):   #UserMixin here
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), unique=True)
-    email = db.Column(db.String(128), unique=True)
-    password = db.Column(db.String(256))
+    email = db.Column(db.String(64), unique=True)
+    password = db.Column(db.String(128))
     timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     online = db.Column(db.Boolean, default=False)
     image = db.Column(db.String(256), default='https://pbs.twimg.com/profile_images/723681919561437186/1Zi2ShOs.jpg')
@@ -46,6 +46,10 @@ class User(UserMixin, db.Model):   #UserMixin here
                                         primaryjoin=(friends.c.friend1_id == id),
                                         secondaryjoin=(friends.c.friend2_id == id),
                                         backref=db.backref('friends', lazy='dynamic'), lazy='dynamic')
+
+    def set_password(self, password):
+        # Password hashing here
+        self.password = password
 
     def __repr__(self):
         return f'{self.id}'

@@ -2,31 +2,38 @@ from app import app
 from flask import json, render_template, url_for, request, jsonify, redirect, session, Response
 from flask_login import login_required, current_user, logout_user, login_user
 from app.models import User
+from app.validations import *
 
 
 @app.get('/')
 @app.post('/')
 @login_required
 def index():
+    if not current_user.verified:
+        return redirect(url_for('login'))
     return render_template('index.html')
 
 
 @app.get('/login')
 @app.post('/login')
 def login():
-    if current_user.is_authenticated:
+    if current_user.is_authenticated and current_user.verified:
         return redirect(url_for('index'))
-    return render_template('login.html')
+    return render_template('login.html', user=current_user)
 
 
 @app.post('/api/users/login')
 def user_login():
+    #? prevent spamming
+
     login_data = request.get_json()
+
     user = User.query.filter_by(email=login_data['email']).first()
     if not user:
         return {'success': False, 'message': 'Incorrect email or password.'}
     if user.password != login_data['password']:
         return {'success': False, 'message': 'Incorrect email or password.'}
+
 
     login_user(user, remember=login_data['remember_me'])
     return {'success': True}
@@ -34,7 +41,31 @@ def user_login():
 
 @app.post('/api/users/register')
 def user_register():
-    return True
+    register_data = request.get_json()
+    failed_response = {'success': False}
+
+    valid_username = validateUsername(register_data['username'])
+    if valid_username != True:
+        failed_response['username'] = valid_username
+    
+    valid_email = validateEmail(register_data['email'])
+    if valid_email != True:
+        failed_response['email'] = valid_email
+    
+    valid_passwords = validatePasswords(register_data['password1'], register_data['password2'])
+    if valid_passwords != True:
+        failed_response['password'] = valid_passwords
+
+    if len(failed_response) > 1:
+        return failed_response
+        
+    user = User(username=register_data['username'], email=register_data['email'])
+    user.set_password(register_data['password1'])
+
+    db.session.add(user)
+    db.session.commit()
+
+    return {'success': True}
 
 
 @app.post('/api/users/logout')
