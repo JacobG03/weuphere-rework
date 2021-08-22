@@ -37,15 +37,51 @@
         </div>
         <div id='content-middle'>
             <div id='content-top'>
-                <span class='top-button' id='people-button'>People</span>
+                <span class='top-button active' id='people-button'>People</span>
                 <span class='top-button' id='posts-button'>Posts</span>
                 <span class='top-button' id='events-button'>Events</span>
             </div>
-            <div class='main-content' id='content-people'>
+            <div class='main-content active' id='content-people'>
                 <div id='searchbar-box'>
-                    <input id='searchbar' type='text' placeholder='Search by username, location, phrases...'>
+                    <input id='searchbar' type='text' placeholder='Search by username, location, phrases...' autocomplete="off">
                     <div id='search-box'>
                         <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <div class='main-content-background' id='background0'>
+                    <div id='people-filters-box'>
+                        <div class='people-filter-item' id='filter-newest'>
+                            <span>Newest</span>
+                        </div>
+                        <div class='people-filter-item' id='filter-oldest'>
+                            <span>Oldest</span>
+                        </div>
+                        <div class='people-filter-item' id='filter-similar'>
+                            <span>Similar</span>
+                        </div>
+                        <div class='people-filter-item' id='filter-online'>
+                            <span>Online</span>
+                        </div>
+                    </div>
+                    <div id='people-container'>
+                        <div class='container-user'>
+
+                        </div>
+                        <div class='container-user'>
+                            
+                        </div>
+                        <div class='container-user'>
+                            
+                        </div>
+                        <div class='container-user'>
+
+                        </div>
+                        <div class='container-user'>
+                            
+                        </div>
+                        <div class='container-user'>
+                            
+                        </div>
                     </div>
                 </div>
             </div>
