@@ -108,20 +108,29 @@ for (let i = 0; i < top_buttons.length; i++) {
     })
 }
 
-//! Make sorting functions work with existing users on page
-//! get sorted data back after fetch call with id's list
 
+const filters = document.getElementsByClassName('people-filter-item');
 
-//* Load people
-
-
-
-
-
-
-
-
-
+for (let i = 0; i < filters.length; i++) {
+    filters[i].addEventListener('click', e => {
+        let filter_name = filters[i].id.split('-')[1];
+        if (filter_name == 'online') {
+            if (filters[i].classList.contains('active')) {
+                filters[i].classList.remove('active');
+            } else {
+                filters[i].classList.add('active');
+            }
+        }
+        else {
+            for (let j = 0; j < filters.length; j++) {
+                if (filters[j].id.split('-')[1] != 'online') {
+                    filters[j].classList.remove('active');
+                filters[i].classList.add('active')
+                }    
+            }
+        }
+    })
+}
 
 function loadPageData() {
     loadNavbarData();
