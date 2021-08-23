@@ -688,7 +688,7 @@ body {
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    border-bottom: 50px;
+    overflow: hidden;
 }
 
 #people-filters-box {
@@ -748,11 +748,14 @@ body {
 
 #people-container {
     width: calc(100% - 20px);
-    height: calc(100% - 20px);
+    min-height: 90%;
     padding: 10px 10px;
     display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
+    flex-basis: 0;
     overflow-y: auto;
 }
 
@@ -783,6 +786,6 @@ body {
 
 @media only screen and (max-width: 1375px) {
     #content-middle > div{
-        width: 600px;
+        width: 660px;
     }
   }

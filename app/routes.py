@@ -96,22 +96,30 @@ def get_current_user():
     }
 
 
-@app.post('/api/users/users')
-def get_users(username):
-    # !send list of usernames
-    # for user in usernames
-    # ! return dict with these users data
-    user = User.query.filter_by(username=username).first()
-    user_data = {
-        'username': user.username,
-        'image': user.image,
-        'online': user.online,
-        'custom_status': user.custom_status,
-        'about_me_short': user.about_me_short,
-        'about_me_long': user.about_me_long
+"""
+    Returns users as dictionaries and a message
+"""
+@app.post('/api/users/<start>/<end>')
+def get_users(start, end):
+    data = {
+        'users': []
     }
-
-    return user_data
+    users = User.query.all()
+    for i in range(int(start), int(end)):
+        try:
+            if users[i]:
+                pass
+        except IndexError:
+            return jsonify(data)
+        
+        user_data = {
+            'id': users[i].id,
+            'username': users[i].username,
+            'image': users[i].image,
+            'online': users[i].online,
+        }
+        data['users'].append(user_data)
+    return jsonify(data)
 
 
 @app.post('/api/users/current_user/friends')

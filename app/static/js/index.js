@@ -80,12 +80,6 @@ function loadNavbarData() {
 }
 
 
-function loadPageData() {
-    loadNavbarData();
-}
-
-
-loadPageData();
 
 
 
@@ -96,15 +90,42 @@ for (let i = 0; i < top_buttons.length; i++) {
     top_buttons[i].addEventListener('click', e => {
         // name of content
         let category_name = top_buttons[i].id.split('-')[0];
-
+        
         let contents = document.getElementsByClassName('main-content');
+        // Hide all, display clicked content 
         for (let i = 0; i < contents.length; i++) {
             contents[i].classList.remove('active');
             top_buttons[i].classList.remove('active')
             if (contents[i].id.split('-')[1] == category_name) {
                 contents[i].classList.add('active');
-                top_buttons[i].classList.add('active')
+                top_buttons[i].classList.add('active');
             }
+        }
+
+        if (category_name == 'people') {
+            defaultPeopleLoad();
         }
     })
 }
+
+//! Make sorting functions work with existing users on page
+//! get sorted data back after fetch call with id's list
+
+
+//* Load people
+
+
+
+
+
+
+
+
+
+
+function loadPageData() {
+    loadNavbarData();
+}
+
+
+loadPageData();
