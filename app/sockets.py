@@ -6,7 +6,7 @@ from flask import session
 
 online = []
 
-@socket.on('connected')
+@socket.on('connect')
 def connected():
     if current_user.is_authenticated and not current_user.username in online:
         session['username'] = current_user.username

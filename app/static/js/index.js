@@ -8,7 +8,6 @@ const login_url = base_url + 'login'
 //! Socket related
 socket = io.connect(base_url)
 
-socket.emit('connected')
 
 socket.on('message', message => {
     console.log(message);
