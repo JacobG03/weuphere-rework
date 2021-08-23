@@ -96,14 +96,10 @@ def get_current_user():
     }
 
 
-"""
-    Returns users as dictionaries and a message
-"""
+
 @app.post('/api/users/<start>/<end>')
 def get_users(start, end):
-    data = {
-        'users': []
-    }
+    data = []
     users = User.query.all()
     for i in range(int(start), int(end)):
         try:
@@ -118,7 +114,7 @@ def get_users(start, end):
             'image': users[i].image,
             'online': users[i].online,
         }
-        data['users'].append(user_data)
+        data.append(user_data)
     return jsonify(data)
 
 

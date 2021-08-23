@@ -513,7 +513,7 @@ body {
 
 /** Index page */
 
-#home-home {
+#navbar-title {
     position: fixed;
     width: calc(100% - 40px);
     padding: 5px 20px;
@@ -521,12 +521,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 2rem;
+    cursor: default;
     transition: var(--speed);
+}
+
+#users-amount {
+    margin-left: 5px;
 }
 
 
 @media only screen and (max-width: 850px) {
-    #home-home {
+    #navbar-title {
         justify-content: flex-start;
     }
   }

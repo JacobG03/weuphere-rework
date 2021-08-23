@@ -47,14 +47,14 @@ class User(UserMixin, db.Model):   #UserMixin here
                                         secondaryjoin=(friends.c.friend2_id == id),
                                         backref=db.backref('friends', lazy='dynamic'), lazy='dynamic')
 
+    def __repr__(self):
+        return f'{self.username}'
+
     def set_password(self, password):
         # Password hashing here
         self.password = password
 
-    def __repr__(self):
-        return f'{self.id}'
 
-    
     def add_friend(self, user):
         if not self.is_friend(user):
             self.friends_list.append(user)
@@ -97,9 +97,10 @@ class Message(db.Model):
 
 class Room(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), unique=True, default='')
     users = db.relationship('User', secondary=rooms, lazy='subquery',
                             backref=db.backref('in_rooms', lazy=True))
-    last_active = db.Column(db.DateTime)
+    last_active = db.Column(db.DateTime, index=True)
     
 
 

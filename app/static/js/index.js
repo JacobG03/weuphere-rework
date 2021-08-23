@@ -6,12 +6,17 @@ const login_url = base_url + 'login'
 
 
 //! Socket related
-socket = io.connect('http://127.0.0.1:5000/')
+socket = io.connect(base_url)
 
 socket.emit('connected')
 
 socket.on('message', message => {
     console.log(message);
+})
+
+socket.on('update user count', data => {
+    let users_amount = document.getElementById('users-amount');
+    users_amount.innerHTML = `(${data['amount']})`;
 })
 
 
@@ -100,10 +105,6 @@ for (let i = 0; i < top_buttons.length; i++) {
                 contents[i].classList.add('active');
                 top_buttons[i].classList.add('active');
             }
-        }
-
-        if (category_name == 'people') {
-            defaultPeopleLoad();
         }
     })
 }
