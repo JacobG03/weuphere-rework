@@ -23,3 +23,6 @@ Preview of project: https://www.figma.com/file/e81tBv9rciOKt0BdYhZ8bL/We-Up-Here
 Goal:
 APi built with flask + React as front-end
 Might use FastAPI instead of Flask.
+
+
+<span>Preview: <img src='https://github.com/JacobG03/weuphere-rework/blob/master/page-people.png'></span>
