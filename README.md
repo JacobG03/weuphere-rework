@@ -6,6 +6,7 @@ I'm bulding a website so that it has:
 - password reset option,
 - quick chat with users (snapchat like),
 - friends,
+- notifications (page, email),
 - ability to post ( I don't know what yet, and how to make it unique ),
 - ability to create events ( same thing, ideas are yet to come),
 - custom themes,
