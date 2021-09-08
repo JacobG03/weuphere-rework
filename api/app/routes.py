@@ -133,5 +133,3 @@ def get_current_user_friends():
         })
 
     return jsonify(friends_data)
-
-    
