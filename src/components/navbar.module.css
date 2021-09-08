@@ -1,5 +1,24 @@
 .navbar {
   width: 100vw;
   height: 4rem;
+  position: relative;
   background-color: var(--main-color);
+  color: var(--text-color);
+}
+
+
+@media only screen and (min-width : 480px) {
+
+}
+
+@media only screen and (min-width : 768px) {
+
+}
+
+@media only screen and (min-width : 992px) {
+
+}
+
+@media only screen and (min-width : 1200px) {
+
 }
