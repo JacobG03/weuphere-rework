@@ -13,29 +13,36 @@ import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 
 
+
 function App() {
+  const data = {
+    'state': null,
+    'user': {
+      'username': null,
+      'image': null,
+    },
+  }
+
   return (
     <Router>
-      <div>
-        <Navbar />
-        <Switch>
-          <Route path='/' exact>
-            <HomePage />
-          </Route>
-          <Route path='/people' exact>
-            <PeoplePage />
-          </Route>
-          <Route path='/posts' exact>
-            <PostsPage />
-          </Route>
-          <Route path='/events' exact>
-            <EventsPage />
-          </Route>
-          <Route path='/login' exact>
-            <LoginPage />
-          </Route>
-        </Switch>
-      </div>
+      <Navbar data={data}/>
+      <Switch>
+        <Route path='/' exact>
+          <HomePage />
+        </Route>
+        <Route path='/people' exact>
+          <PeoplePage />
+        </Route>
+        <Route path='/posts' exact>
+          <PostsPage />
+        </Route>
+        <Route path='/events' exact>
+          <EventsPage />
+        </Route>
+        <Route path='/login' exact>
+          <LoginPage />
+        </Route>
+      </Switch>
     </Router>
   );
 }
