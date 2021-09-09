@@ -16,7 +16,7 @@ import HomePage from './pages/HomePage';
 
 function App() {
   const data = {
-    'state': null,
+    'state': 0,
     'user': {
       'username': null,
       'image': null,
