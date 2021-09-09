@@ -14,16 +14,16 @@ def index():
     return render_template('index.html')
 
 
-@app.get('/login')
-@app.post('/login')
-def login():
+@app.get('/auth')
+@app.post('/auth')
+def auth():
     if current_user.is_authenticated and current_user.verified:
         return redirect(url_for('index'))
     return render_template('login.html', user=current_user)
 
 
-@app.post('/api/users/login')
-def user_login():
+@app.post('/api/login')
+def login():
     #? prevent spamming
 
     login_data = request.get_json()
@@ -39,8 +39,8 @@ def user_login():
     return {'success': True}
 
 
-@app.post('/api/users/register')
-def user_register():
+@app.post('/api/register')
+def register():
     register_data = request.get_json()
     failed_response = {'success': False}
 
