@@ -41,7 +41,7 @@ function Navbar(props) {
     // Navbar displayed when user is Authenticated
     return (
       <div className={styles.navbar}>
-        We Up Here
+        <Logo />
       </div>
     )
   }
@@ -62,7 +62,7 @@ function SignIn() {
 
 function Logo() {
   return (
-    <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
+    <Animated animationIn="fadeInRight" animationOut="fadeOut" isVisible={true}>
       <Link to='/'>
         <span className={styles.logo}>We Up Here</span>
       </Link>
