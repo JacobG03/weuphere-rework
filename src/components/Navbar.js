@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import styles from './navbar.module.css'
-import {Animated} from "react-animated-css";
 import { Link } from "react-router-dom";
 
+import styles from './navbar.module.css'
+import {Animated} from "react-animated-css";
 import { WaveTopBottomLoading } from 'react-loadingg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
+
 
 // Auth = 1
 // unAuth = 0
@@ -49,7 +52,8 @@ function SignIn() {
     <Animated animationIn="fadeInLeft" animationOut="fadeOut" isVisible={true}>
       <Link to='login'>
         <div className={styles.signInButton}>
-          Sign In
+          <FontAwesomeIcon icon={faSignInAlt} />
+          <span>Sign In</span>
         </div>  
       </Link>
     </Animated>

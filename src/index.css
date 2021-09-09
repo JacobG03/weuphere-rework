@@ -1,6 +1,9 @@
 :root {
   --background-color: #ffffff;
   --main-color: #20232a;
+  --main-color2: #36383f;
+  --main-color3: #4c4e54;
+  --main-color4: #626569;
   --text-color: #ffffff;
   --text-color2: rgb(255, 255, 255, 0.75);
   --text-color3: rgb(255, 255, 255, 0.55);
@@ -9,7 +12,7 @@
   --warning-color: #e72222;
   --main-color-shadow: 0px 4px 20px 2px rgba(0, 0, 0, 0.5);
   --background-color-shadow: 0px 4px 20px 2px rgba(255, 255, 255, 0.5);
-  --border-radius: 8px;
+  --border-radius: 6px;
   --speed: 300ms;
 }
 
