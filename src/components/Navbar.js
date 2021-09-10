@@ -73,27 +73,33 @@ function Menu(props) {
         animateOnMount={false}
         animationIn='slideInRight' 
         animationOut='slideOutRight' 
-        animationInDuration='300'
-        animationOutDuration='300' 
+        animationInDuration={300}
+        animationOutDuration={300}
         isVisible={props.menu} 
       >
         <div className={styles.menu}>
-          <div className={styles['menu-item']}>
-            <FontAwesomeIcon 
-              className={styles['menu-icon']} 
-              icon={faCog}
-              size='1.5x'
-            >
-            </FontAwesomeIcon>
-            <span>Settings</span>
-          </div> 
-          <div className={styles['menu-item']}>
-            <FontAwesomeIcon 
-              className={styles['menu-icon']} 
-              icon={faSignOutAlt}>
-            </FontAwesomeIcon>
-            <span>Sign Out</span>
-          </div>
+          <Animated
+            animationIn='fadeInLeft' 
+            animationOut='fadeOutRight' 
+            animationInDuration={400}
+            isVisible={props.menu}
+          >
+            <div className={styles['menu-item']}>
+              <FontAwesomeIcon 
+                className={styles['menu-icon']} 
+                icon={faCog}
+                >
+              </FontAwesomeIcon>
+              <span>Settings</span>
+            </div> 
+            <div className={styles['menu-item']}>
+              <FontAwesomeIcon 
+                className={styles['menu-icon']} 
+                icon={faSignOutAlt}>
+              </FontAwesomeIcon>
+              <span>Sign Out</span>
+            </div>
+          </Animated>
         </div>
       </Animated>
     </div>
