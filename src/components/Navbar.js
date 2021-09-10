@@ -50,23 +50,31 @@ function Navbar(props) {
           <Friends />
           <Avatar user={props.data.user} displayMenu={displayMenu} menu={menu}/>
         </div>
-        {menu ? <Menu /> : null}
+        <Menu menu={menu} />
       </div>
     )
   }
 }
 
-function Menu() {
+function Menu(props) {
   return (
-    <div className={styles.menu}>
-      <span>Menu here</span>
+    <div className={styles.menu_box}>
+      <Animated 
+      animationInDuration='500' 
+      animationIn="fadeInRight" 
+      animationOut="fadeOutRight" 
+      isVisible={props.menu} 
+      className={'menu'}
+      >
+        <div className={styles.menu}>
+          <span>Menu here</span>
+        </div>
+      </Animated>
     </div>
-
   )
 }
 
 function Avatar(props) {
-  console.log(props.menu)
   return (
     <Animated animationIn="fadeInLeft" animationOut="fadeOut" isVisible={true}>
       <div className={styles.avatar} onClick={() => props.displayMenu(!props.menu)}>
