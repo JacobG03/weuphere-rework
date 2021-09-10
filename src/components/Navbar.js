@@ -37,7 +37,8 @@ function Navbar(props) {
     return (
       <div className={styles.navbar} style={{
         'justifyContent': 'space-between'
-      }}>
+        }}
+      >
         <Logo />
         <SignIn />
       </div>
@@ -51,16 +52,24 @@ function Navbar(props) {
         }}
       >
         <Logo />
-        <div className={styles.activities}>
-          <Messages />
-          <Friends />
-          <Avatar 
-            user={props.data.user} 
-            displayMenu={displayMenu} 
-            menu={menu}
-          />
-        </div>
-        <Menu menu={menu} />
+        <Animated 
+          animateOnMount={true}
+          animationIn='slideInRight' 
+          animationOut='slideOutRight' 
+          animationInDuration={600}
+          animationOutDuration={600}
+        >
+          <div className={styles.activities}>
+            <Messages />
+            <Friends />
+            <Avatar 
+              user={props.data.user} 
+              displayMenu={displayMenu} 
+              menu={menu}
+            />
+          </div>
+        </Animated>
+        <Menu display={menu} />
       </div>
     )
   }
@@ -75,7 +84,7 @@ function Menu(props) {
         animationOut='slideOutRight' 
         animationInDuration={300}
         animationOutDuration={300}
-        isVisible={props.menu} 
+        isVisible={props.display} 
       >
         <div className={styles.menu}>
           <Animated
@@ -85,16 +94,16 @@ function Menu(props) {
             isVisible={props.menu}
           >
             <div className={styles['menu-item']}>
-              <FontAwesomeIcon 
-                className={styles['menu-icon']} 
+              <FontAwesomeIcon
+                className={styles['menu-icon']}
                 icon={faCog}
-                >
+              >
               </FontAwesomeIcon>
               <span>Settings</span>
-            </div> 
+            </div>
             <div className={styles['menu-item']}>
               <FontAwesomeIcon 
-                className={styles['menu-icon']} 
+                className={styles['menu-icon']}
                 icon={faSignOutAlt}>
               </FontAwesomeIcon>
               <span>Sign Out</span>
@@ -108,50 +117,40 @@ function Menu(props) {
 
 function Avatar(props) {
   return (
-    <Animated 
-      animationIn="fadeInLeft" 
-      animationOut="fadeOut" 
-      isVisible={true}
-      >
-      <div className={styles.activity} onClick={() => props.displayMenu(!props.menu)}>
-        <img src={props.user.image} alt='User Avatar'></img>
-      </div>
-    </Animated>
+    <div className={styles.activity} onClick={() => props.displayMenu(!props.menu)}>
+      <img src={props.user.image} alt='User Avatar'></img>
+    </div>
   )
 }
 
 function Messages() {
   // Receive length of unread messages
   return (
-    <Animated 
-    animationIn="fadeInLeft" 
-    animationOut="fadeOut" 
-    isVisible={true}
-    >
-      <div className={styles.activity}>
-        <FontAwesomeIcon icon={faUsers} size='2x'/>
-      </div>
-    </Animated>
+    <div className={styles.activity}>
+      <FontAwesomeIcon icon={faUsers} size='2x'/>
+    </div>
   )
 }
 
 function Friends(props) {
   // Receive new friend requests
   return (
-    <Animated animationIn="fadeInLeft" animationOut="fadeOut" isVisible={true}>
-      <div className={styles.activity}>
-        <FontAwesomeIcon icon={faCommentAlt} size='2x'/>
-      </div>
-    </Animated>
+    <div className={styles.activity}>
+      <FontAwesomeIcon icon={faCommentAlt} size='2x'/>
+    </div>
   )
 }
 
 function SignIn() {
   return (
-    <Animated 
-    animationIn="fadeInLeft" 
-    animationOut="fadeOutRight" 
-    isVisible={true}>
+    <Animated
+    animateOnMount={true}
+    animationIn='slideInRight' 
+    animationOut='slideOutRight'
+    animationInDuration={600}
+    animationOutDuration={600}
+    isVisible={true}
+    >
       <Link to='login'>
         <div className={styles.signInButton}>
           <FontAwesomeIcon 
@@ -168,8 +167,10 @@ function Logo() {
   return (
     <Animated
     animateOnMount={true}
-    animationIn="fadeInRight" 
-    animationOut="fadeOut" 
+    animationIn="slideInLeft" 
+    animationOut="slideOutLeft"
+    animationInDuration={600}
+    animationOutDuration={600}
     isVisible={true}
     >
       <Link to='/'>
