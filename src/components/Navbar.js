@@ -5,7 +5,13 @@ import styles from './navbar.module.css'
 import {Animated} from "react-animated-css";
 import { WaveTopBottomLoading } from 'react-loadingg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSignInAlt, faCommentAlt, faUsers } from '@fortawesome/free-solid-svg-icons'
+import { 
+  faSignInAlt, 
+  faCommentAlt, 
+  faUsers,
+  faCog,
+  faSignOutAlt
+} from '@fortawesome/free-solid-svg-icons'
 
 
 // Auth = 1
@@ -48,7 +54,11 @@ function Navbar(props) {
         <div className={styles.activities}>
           <Messages />
           <Friends />
-          <Avatar user={props.data.user} displayMenu={displayMenu} menu={menu}/>
+          <Avatar 
+            user={props.data.user} 
+            displayMenu={displayMenu} 
+            menu={menu}
+          />
         </div>
         <Menu menu={menu} />
       </div>
@@ -59,15 +69,31 @@ function Navbar(props) {
 function Menu(props) {
   return (
     <div className={styles.menu_box}>
-      <Animated 
-      animationInDuration='500' 
-      animationIn="fadeInRight" 
-      animationOut="fadeOutRight" 
-      isVisible={props.menu} 
-      className={'menu'}
+      <Animated
+        animateOnMount={false}
+        animationIn='slideInRight' 
+        animationOut='slideOutRight' 
+        animationInDuration='300'
+        animationOutDuration='300' 
+        isVisible={props.menu} 
       >
         <div className={styles.menu}>
-          <span>Menu here</span>
+          <div className={styles['menu-item']}>
+            <FontAwesomeIcon 
+              className={styles['menu-icon']} 
+              icon={faCog}
+              size='1.5x'
+            >
+            </FontAwesomeIcon>
+            <span>Settings</span>
+          </div> 
+          <div className={styles['menu-item']}>
+            <FontAwesomeIcon 
+              className={styles['menu-icon']} 
+              icon={faSignOutAlt}>
+            </FontAwesomeIcon>
+            <span>Sign Out</span>
+          </div>
         </div>
       </Animated>
     </div>
@@ -76,8 +102,12 @@ function Menu(props) {
 
 function Avatar(props) {
   return (
-    <Animated animationIn="fadeInLeft" animationOut="fadeOut" isVisible={true}>
-      <div className={styles.avatar} onClick={() => props.displayMenu(!props.menu)}>
+    <Animated 
+      animationIn="fadeInLeft" 
+      animationOut="fadeOut" 
+      isVisible={true}
+      >
+      <div className={styles.activity} onClick={() => props.displayMenu(!props.menu)}>
         <img src={props.user.image} alt='User Avatar'></img>
       </div>
     </Animated>
@@ -87,7 +117,11 @@ function Avatar(props) {
 function Messages() {
   // Receive length of unread messages
   return (
-    <Animated animationIn="fadeInLeft" animationOut="fadeOut" isVisible={true}>
+    <Animated 
+    animationIn="fadeInLeft" 
+    animationOut="fadeOut" 
+    isVisible={true}
+    >
       <div className={styles.activity}>
         <FontAwesomeIcon icon={faUsers} size='2x'/>
       </div>
@@ -108,10 +142,15 @@ function Friends(props) {
 
 function SignIn() {
   return (
-    <Animated animationIn="fadeInLeft" animationOut="fadeOut" isVisible={true}>
+    <Animated 
+    animationIn="fadeInLeft" 
+    animationOut="fadeOutRight" 
+    isVisible={true}>
       <Link to='login'>
         <div className={styles.signInButton}>
-          <FontAwesomeIcon icon={faSignInAlt} />
+          <FontAwesomeIcon 
+          icon={faSignInAlt} 
+          />
           <span>Sign In</span>
         </div>  
       </Link>
@@ -121,7 +160,12 @@ function SignIn() {
 
 function Logo() {
   return (
-    <Animated animationIn="fadeInRight" animationOut="fadeOut" isVisible={true}>
+    <Animated
+    animateOnMount={true}
+    animationIn="fadeInRight" 
+    animationOut="fadeOut" 
+    isVisible={true}
+    >
       <Link to='/'>
         <span className={styles.logo}>We Up Here</span>
       </Link>
@@ -131,7 +175,11 @@ function Logo() {
 
 function Loader(props) {
   return (
-    <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={props.display}>
+    <Animated 
+    animationIn="fadeIn" 
+    animationOut="fadeOut" 
+    isVisible={props.display}
+    >
       <WaveTopBottomLoading color='#ffffff' size='small' style={{'position': 'relative'}}/>
     </Animated>
   )
