@@ -20,7 +20,7 @@
 }
 
 .menu {
-  width: calc(50vw - 3px);
+  width: fit-content;
   height: calc(fit-content - 20px);
   display: flex;
   flex-direction: column;
