@@ -16,10 +16,10 @@ import HomePage from './pages/HomePage';
 
 function App() {
   const data = {
-    'state': 0,
+    'state': 1,
     'user': {
-      'username': null,
-      'image': null,
+      'username': 'JacobG',
+      'image': 'https://pbs.twimg.com/profile_images/723681919561437186/1Zi2ShOs.jpg',
     },
   }
 

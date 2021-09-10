@@ -5,7 +5,7 @@ import styles from './navbar.module.css'
 import {Animated} from "react-animated-css";
 import { WaveTopBottomLoading } from 'react-loadingg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
+import { faSignInAlt, faCommentAlt, faUsers } from '@fortawesome/free-solid-svg-icons'
 
 
 // Auth = 1
@@ -14,11 +14,9 @@ import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
 
 // Transition smoothly between states
 
-const loaderStyle = {
-  'position': 'relative',
-}
 
 function Navbar(props) {
+  const [menu, displayMenu] = useState(false)
 
   if (props.data.state === null) {
     // Default navbar displayed while waiting for data
@@ -28,23 +26,76 @@ function Navbar(props) {
       </div>
     )
   }
-  if (props.data.state === 0) {
+  else if (props.data.state === 0) {
     // Navbar displayed when user is unAuthenticated
     return (
-      <div className={styles.navbar} style={{'justify-content': 'space-between'}}>
+      <div className={styles.navbar} style={{
+        'justifyContent': 'space-between'
+      }}>
         <Logo />
         <SignIn />
       </div>
     )
   }
-  if (props.data.state === 1) {
+  else if (props.data.state === 1) {
     // Navbar displayed when user is Authenticated
     return (
-      <div className={styles.navbar}>
+      <div className={styles.navbar} style={{
+        'justifyContent': 'space-between'
+        }}
+      >
         <Logo />
+        <div className={styles.activities}>
+          <Messages />
+          <Friends />
+          <Avatar user={props.data.user} displayMenu={displayMenu} menu={menu}/>
+        </div>
+        {menu ? <Menu /> : null}
       </div>
     )
   }
+}
+
+function Menu() {
+  return (
+    <div className={styles.menu}>
+      <span>Menu here</span>
+    </div>
+
+  )
+}
+
+function Avatar(props) {
+  console.log(props.menu)
+  return (
+    <Animated animationIn="fadeInLeft" animationOut="fadeOut" isVisible={true}>
+      <div className={styles.avatar} onClick={() => props.displayMenu(!props.menu)}>
+        <img src={props.user.image} alt='User Avatar'></img>
+      </div>
+    </Animated>
+  )
+}
+
+function Messages() {
+  // Receive length of unread messages
+  return (
+    <Animated animationIn="fadeInLeft" animationOut="fadeOut" isVisible={true}>
+      <div className={styles.activity}>
+        <FontAwesomeIcon icon={faUsers} size='2x'/>
+      </div>
+    </Animated>
+  )
+}
+
+function Friends(props) {
+  // Receive new friend requests
+  return (
+    <Animated animationIn="fadeInLeft" animationOut="fadeOut" isVisible={true}>
+      <div className={styles.activity}>
+        <FontAwesomeIcon icon={faCommentAlt} size='2x'/>
+      </div>
+    </Animated>
+  )
 }
 
 function SignIn() {
@@ -73,7 +124,7 @@ function Logo() {
 function Loader(props) {
   return (
     <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={props.display}>
-      <WaveTopBottomLoading color='#ffffff' size='small' style={loaderStyle}/>
+      <WaveTopBottomLoading color='#ffffff' size='small' style={{'position': 'relative'}}/>
     </Animated>
   )
 }
