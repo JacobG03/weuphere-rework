@@ -15,7 +15,7 @@ import HomePage from './pages/HomePage';
 
 
 function App() {
-  const data = {
+  const dummy_data = {
     'state': 1,
     'user': {
       'username': 'JacobG',
@@ -25,7 +25,7 @@ function App() {
 
   return (
     <Router>
-      <Navbar data={data}/>
+      <Navbar data={dummy_data}/>
       <Switch>
         <Route path='/' exact>
           <HomePage />

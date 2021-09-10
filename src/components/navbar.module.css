@@ -30,7 +30,7 @@
   background-color: var(--main-color);
   border-bottom-left-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
-  transform: translate(-3px, calc(4rem + 5px));
+  transform: translate(-3px, calc(4rem));
   z-index: 5;
   transition: var(--speed);
   margin-left: 6px; /* fixes menu not hiding fully on animation out */ 
