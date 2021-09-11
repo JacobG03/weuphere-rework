@@ -5,9 +5,23 @@ import {Animated} from "react-animated-css";
 
 
 function Notification(props) {
+  const notification = props.notification
+  const displayNotification = props.displayNotification
+
   return (
     <div className={styles['notification-box']}>
-      
+      <Animated 
+        animateOnMount={false}
+        animationIn='fadeInLeft' 
+        animationOut='fadeOutRight' 
+        animationInDuration={300}
+        animationOutDuration={300}
+        isVisible={notification}
+      >
+        <div className={styles.notification}>
+          <span className={styles.message}>yo</span>
+        </div>
+      </Animated>
     </div>
   )
 }

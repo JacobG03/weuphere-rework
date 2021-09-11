@@ -22,7 +22,8 @@ import {
 
 
 function Navbar(props) {
-  const [menu, displayMenu] = useState(false)
+  const displayMenu = props.displayMenu 
+  const menu = props.menu
 
   if (props.data.state === null) {
     // Default navbar displayed while waiting for data

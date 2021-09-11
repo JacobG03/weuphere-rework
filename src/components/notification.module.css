@@ -1,9 +1,26 @@
 .notification-box {
-  width: 75vw;
-  height: 4rem;
   position: absolute;
-  bottom: 0;
+  width: 80vw;
+  height: 2rem;
+  top: 0;
+  left: 0;
   right: 0;
+  margin: auto;
+  transform: translateY(5px);
+  z-index: 11;
+}
+
+.notification {
+  width: 80vw;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--main-color2);
   border-radius: var(--border-radius);
+}
+
+.message {
+  font-size: 1.2rem;
+  color: var(--text-color);
 }

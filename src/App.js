@@ -14,6 +14,9 @@ import HomePage from './pages/HomePage';
 
 
 function App() {
+  const [menu, displayMenu] = useState(false)
+  const [notification, displayNotification] = useState(false)
+
   const dummy_data = {
     'state': 1,
     'user': {
@@ -24,7 +27,11 @@ function App() {
 
   return (
     <Router>
-      <Navbar data={dummy_data}/>
+      <Navbar 
+        data={dummy_data} 
+        menu={menu} 
+        displayMenu={displayMenu}
+      />
       <Switch>
         <Route path='/' exact>
           <HomePage />
@@ -39,7 +46,10 @@ function App() {
           <EventsPage />
         </Route>
         <Route path='/login' exact>
-          <LoginPage />
+          <LoginPage 
+            notification={notification} 
+            displayNotification={displayNotification}
+          />
         </Route>
       </Switch>
     </Router>
