@@ -22,7 +22,15 @@ body {
   padding: 0;
   font-family: 'Sora', sans-serif;
   background-color: var(--background-color);
-  overflow-x: hidden;
+  overflow: hidden;
+  position: fixed;
+}
+
+.container {
+  position: relative;
+  width: 100vw;
+  height: calc(100vh - 4rem);
+  overflow-y: auto;
 }
 
 * {

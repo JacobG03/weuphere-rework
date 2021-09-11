@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import Notification from '../components/Notification';
 
 
 function LoginPage() {
   return (
-    <div>
-      Login Page
+    <div className='container'>
+      <Notification msg='this message' />
     </div>
   )
 }

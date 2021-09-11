@@ -13,7 +13,6 @@ import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 
 
-
 function App() {
   const dummy_data = {
     'state': 1,
