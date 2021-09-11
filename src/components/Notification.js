@@ -8,6 +8,12 @@ function Notification(props) {
   const notification = props.notification
   const displayNotification = props.displayNotification
 
+  if (notification) {
+    setTimeout(() => {
+      displayNotification({'display': !notification.display})
+    }, 5500)    
+  }
+
   return (
     <div className={styles['notification-box']}>
       <Animated 
@@ -16,9 +22,14 @@ function Notification(props) {
         animationOut='fadeOutRight' 
         animationInDuration={300}
         animationOutDuration={300}
-        isVisible={notification}
+        isVisible={notification.display}
       >
         <div className={styles.notification}>
+          {notification.display ? 
+          <div className={styles.timer}>
+
+          </div>
+          : null}
           <span className={styles.message}>yo</span>
         </div>
       </Animated>

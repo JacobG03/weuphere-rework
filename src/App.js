@@ -15,7 +15,13 @@ import HomePage from './pages/HomePage';
 
 function App() {
   const [menu, displayMenu] = useState(false)
-  const [notification, displayNotification] = useState(false)
+  const [notification, displayNotification] = useState({
+    'display': false,
+    'data': {
+      'priority': null,
+      'msg': null,
+    }
+  })
 
   const dummy_data = {
     'state': 1,
