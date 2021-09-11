@@ -1,0 +1,9 @@
+.notification-box {
+  width: 75vw;
+  height: 4rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: var(--main-color2);
+  border-radius: var(--border-radius);
+}
