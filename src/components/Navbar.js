@@ -124,6 +124,7 @@ function Avatar(props) {
       className={styles.activity}
       whileTap={{ scale: 0.8}}
       onClick={() => props.displayMenu(!props.menu)}
+      whileHover={{ cursor: 'pointer'}}
     >
       <img 
         src={props.user.image}
@@ -192,7 +193,12 @@ function Logo() {
     isVisible={true}
     >
       <Link to='/'>
-        <span className={styles.logo}>We Up Here</span>
+        <motion.span 
+          className={styles.logo}
+          whileHover={{ cursor: 'pointer'}}
+        >
+          We Up Here
+        </motion.span>
       </Link>
     </Animated>
   )

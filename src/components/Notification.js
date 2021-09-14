@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 import styles from './notifications.module.css'
 import {Animated} from "react-animated-css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { 
-  faTimes
-} from '@fortawesome/free-solid-svg-icons'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion';
+
 
 function Notification(props) {
   const [display, setDisplay] = useState(true)
@@ -48,11 +47,7 @@ function Notification(props) {
               }, 1000)
             }}
           >
-            <FontAwesomeIcon 
-              icon={faTimes}
-              size={'lg'}
-            >
-            </FontAwesomeIcon>
+            <FontAwesomeIcon icon={faTimes} size={'lg'}></FontAwesomeIcon>
           </motion.div>
           <div className={styles['loading']} />
         </div>

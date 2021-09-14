@@ -6,7 +6,10 @@ function HomePage(props) {
     <div onClick={() => {
       props.updateNotifications([
         ...props.notifications,
-        <Notification message='A little longer message to see how it works' />
+        <Notification
+          message='A little longer message to see how it works'
+          key={props.notifications.length}
+        />
       ])
     }}
     >
