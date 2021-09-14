@@ -6,14 +6,38 @@ import { } from '@fortawesome/free-solid-svg-icons'
 
 
 function Notifications(props) {
+  const notifications = props.notifications
+  const updateNotifications = props.updateNotifications
+
+  console.log(notifications)
+
   return (
     <div className={styles['notifications-box']}>
-      <div className={styles['notification']}>
-        Notification
-      </div>
-      <div className={styles['notification']}>
-        Notification 2
-      </div>
+      {notifications.map(notification => (
+        <Notification 
+          notification={notification}
+          notifications={notifications}
+          updateNotifications={updateNotifications}
+          key={notification.key}
+        />
+      ))}
+    </div>
+  )
+}
+
+function Notification(props) {
+  const notification = props.notification
+  const updateNotifications = props.updateNotifications
+  var notifications = props.notifications
+  
+  setTimeout(() => {
+    const newNotifications = notifications.filter((item) => item.key !== notification.key);
+    updateNotifications(newNotifications)
+  }, 3000)
+
+  return (
+    <div className={styles['notification']}>
+      <span>{notification.message}</span>
     </div>
   )
 }

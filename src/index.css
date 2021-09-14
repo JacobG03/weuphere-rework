@@ -16,6 +16,10 @@
   --speed: 300ms;
 }
 
+html {
+  position: fixed;
+  height: -webkit-fill-available;
+}
 
 body {
   margin: 0;
@@ -23,7 +27,8 @@ body {
   font-family: 'Sora', sans-serif;
   background-color: var(--background-color);
   overflow: hidden;
-  position: fixed;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 .container {

@@ -16,6 +16,7 @@ import Notifications from './components/Notifications';
 
 function App() {
   const [menu, displayMenu] = useState(false)
+  const [notifications, updateNotifications] = useState([])
 
   const dummy_data = {
     'state': 1,
@@ -32,11 +33,17 @@ function App() {
         menu={menu} 
         displayMenu={displayMenu}
       />
-      <Notifications />
-      <Switch>
-        <div className='container'>
+      <Notifications
+        notifications={notifications}
+        updateNotifications={updateNotifications}
+      />
+      <div className='container'>
+        <Switch>
           <Route path='/' exact>
-            <HomePage />
+            <HomePage 
+              notifications={notifications}
+              updateNotifications={updateNotifications}
+            />
           </Route>
           <Route path='/people' exact>
             <PeoplePage />
@@ -50,8 +57,8 @@ function App() {
           <Route path='/login' exact>
             <LoginPage />
           </Route>
-        </div>
-      </Switch>
+        </Switch>
+      </div>
     </Router>
   );
 }
