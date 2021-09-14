@@ -42,10 +42,10 @@
   border-bottom-left-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
   background-color: var(--accent-color);
-  animation: load 5s;
   position: absolute;
   bottom: 0;
   left: 0;
+  animation: load 5s ease-in-out;
 }
 
 @keyframes load {
