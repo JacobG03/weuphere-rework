@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 function LoginPage(props) {
   return (
-    <div className='container'>
+    <div>
       Login Page
     </div>
   )

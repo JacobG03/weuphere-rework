@@ -11,6 +11,7 @@ import PostsPage from './pages/PostsPage';
 import PeoplePage from './pages/EventsPage';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
+import Notifications from './components/Notifications';
 
 
 function App() {
@@ -31,22 +32,25 @@ function App() {
         menu={menu} 
         displayMenu={displayMenu}
       />
+      <Notifications />
       <Switch>
-        <Route path='/' exact>
-          <HomePage />
-        </Route>
-        <Route path='/people' exact>
-          <PeoplePage />
-        </Route>
-        <Route path='/posts' exact>
-          <PostsPage />
-        </Route>
-        <Route path='/events' exact>
-          <EventsPage />
-        </Route>
-        <Route path='/login' exact>
-          <LoginPage />
-        </Route>
+        <div className='container'>
+          <Route path='/' exact>
+            <HomePage />
+          </Route>
+          <Route path='/people' exact>
+            <PeoplePage />
+          </Route>
+          <Route path='/posts' exact>
+            <PostsPage />
+          </Route>
+          <Route path='/events' exact>
+            <EventsPage />
+          </Route>
+          <Route path='/login' exact>
+            <LoginPage />
+          </Route>
+        </div>
       </Switch>
     </Router>
   );
