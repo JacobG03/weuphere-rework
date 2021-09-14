@@ -34,6 +34,13 @@
   background-color: var(--main-color);
   text-align: center;
   color: var(--text-color);
+  box-shadow:
+    0 1px 1px hsl(0deg 0% 0% / 0.075),
+    0 2px 2px hsl(0deg 0% 0% / 0.075),
+    0 4px 4px hsl(0deg 0% 0% / 0.075),
+    0 8px 8px hsl(0deg 0% 0% / 0.075),
+    0 16px 16px hsl(0deg 0% 0% / 0.075);
+  transition: var(--speed);
 }
 
 .message {
@@ -79,11 +86,29 @@
 }
 
 @media only screen and (min-width : 768px) {
+  .notification {
+    width: 60vw;
+  }
 
+  .message {
+    font-size: 0.9rem;
+  }
 }
 
 @media only screen and (min-width : 992px) {
+  .notification {
+    width: 25vw;
+  }
 
+  .notifications {
+    width: 25vw;
+    left: unset;
+    right: 10px
+  }
+  
+  .message {
+    font-size: 1rem;
+  }
 }
 
 @media only screen and (min-width : 1200px) {

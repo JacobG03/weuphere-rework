@@ -28,7 +28,7 @@ function Notification(props) {
     <div className={styles['notfication-box']}>
       <Animated 
         animateOnMount={display}
-        animationIn='fadeInLeft'
+        animationIn='fadeInRight'
         animationOut='fadeOutRight'
         isVisible={display}
       >
