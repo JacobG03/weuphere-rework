@@ -14,7 +14,7 @@ function Notification(props) {
       setTimeout(() => {
         setDisplay(null)
       }, 1000)
-    }, 3000)
+    }, 5000)
   }
 
   if (display === null) {
@@ -32,6 +32,7 @@ function Notification(props) {
       >
         <div className={styles['notification']}>
           <span>{props.message}</span>
+          <div className={styles['loading']} />
         </div>
       </Animated>
     </div>
