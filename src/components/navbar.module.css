@@ -115,7 +115,7 @@
   justify-content: center;
   align-items: center;
   margin: 10px 10px;
-  z-index: 6;
+  z-index: 10;
 }
 
 .activity > img {
@@ -136,9 +136,6 @@
 }
 
 @media only screen and (min-width : 992px) {
-  .acitivity {
-    cursor: pointer;
-  }
 }
 
 @media only screen and (min-width : 1200px) {

@@ -12,6 +12,8 @@ import {
   faCog,
   faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons'
+import { motion } from 'framer-motion';
+
 
 
 // Auth = 1
@@ -118,27 +120,42 @@ function Menu(props) {
 
 function Avatar(props) {
   return (
-    <div className={styles.activity} onClick={() => props.displayMenu(!props.menu)}>
-      <img src={props.user.image} alt='User Avatar'></img>
-    </div>
+    <motion.div 
+      className={styles.activity}
+      whileTap={{ scale: 0.8}}
+      onClick={() => props.displayMenu(!props.menu)}
+    >
+      <img 
+        src={props.user.image}
+        alt='User Avatar'
+      />
+    </motion.div>
   )
 }
 
 function Messages() {
   // Receive length of unread messages
   return (
-    <div className={styles.activity}>
+    <motion.div 
+      className={styles.activity}
+      whileTap={{ scale: 0.8 }}
+      whileHover={{ cursor: 'pointer'}}
+    >
       <FontAwesomeIcon icon={faUsers} size='2x'/>
-    </div>
+    </motion.div>
   )
 }
 
 function Friends(props) {
   // Receive new friend requests
   return (
-    <div className={styles.activity}>
+    <motion.div 
+      className={styles.activity}
+      whileHover={{ cursor: 'pointer'}}
+      whileTap={{ scale: 0.8 }}
+    >
       <FontAwesomeIcon icon={faCommentAlt} size='2x'/>
-    </div>
+    </motion.div>
   )
 }
 
