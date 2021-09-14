@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
-
+import Notification from '../components/Notification';
 
 function HomePage(props) {
   return (
-    <div onClick={() => 
+    <div onClick={() => {
       props.updateNotifications([
         ...props.notifications,
-        {
-          'key': props.notifications.length,
-          'message': 'Message'
-        }
+        <Notification message='Yo' />
       ])
-    }>
+    }}
+    >
       Home Page
     </div>
   )

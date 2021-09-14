@@ -40,7 +40,7 @@ function App() {
       <div className='container'>
         <Switch>
           <Route path='/' exact>
-            <HomePage 
+            <HomePage
               notifications={notifications}
               updateNotifications={updateNotifications}
             />
