@@ -12,7 +12,7 @@
   --warning-color: #e72222;
   --main-color-shadow: 0px 4px 20px 2px rgba(0, 0, 0, 0.5);
   --background-color-shadow: 0px 4px 20px 2px rgba(255, 255, 255, 0.5);
-  --border-radius: 4px;
+  --border-radius: 6px;
   --speed: 300ms;
   --shadow-color: hsl(0deg 0% 0% / 0.25);
   --shadow-color-accent: hsl(193deg 95% 68%);

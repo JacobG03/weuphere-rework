@@ -171,12 +171,14 @@ function SignIn() {
     isVisible={true}
     >
       <Link to='login'>
-        <div className={styles.signInButton}>
-          <FontAwesomeIcon 
-          icon={faSignInAlt} 
-          />
+        <motion.div 
+          className={styles.signInButton}
+          whileHover={{ cursor: 'pointer' }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <FontAwesomeIcon icon={faSignInAlt} />
           <span>Sign In</span>
-        </div>  
+        </motion.div>  
       </Link>
     </Animated>
   )

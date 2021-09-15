@@ -5,9 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { } from '@fortawesome/free-solid-svg-icons'
 
 
-
 function Notifications(props) {
-  console.log(props.notifications)
   return (
     <div className={styles['notifications']}>
       {props.notifications}

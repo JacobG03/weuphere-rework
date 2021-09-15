@@ -19,7 +19,7 @@ function App() {
   const [notifications, updateNotifications] = useState([])
 
   const dummy_data = {
-    'state': 1,
+    'state': 0,
     'user': {
       'username': 'JacobG',
       'image': 'https://pbs.twimg.com/profile_images/723681919561437186/1Zi2ShOs.jpg',
