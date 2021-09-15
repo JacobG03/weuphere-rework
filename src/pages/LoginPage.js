@@ -1,59 +1,72 @@
 import React, { 
   useState, 
-  useRef, 
-  useEffect
 } from 'react';
 import { useForm } from 'react-hook-form'
 import styles from './loginPage.module.css'
 import { Animated } from 'react-animated-css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion';
 
 
 function LoginPage(props) {
-  const [displayRegister, setDisplayRegister] = useState(false)
-  const registerPage = useRef(null)
-  const loginPage = useRef(null)
+  const [display, setDisplay] = useState(false)
 
-  useEffect(() => {
-    if (displayRegister) {
-      registerPage.current.style.display = 'block'
-      registerPage.current.scrollIntoView({
-        behavior: 'smooth'
-      });
-    } else {
-      setTimeout(() => {
-        registerPage.current.style.display = 'none'
-      }, 1000)
-      loginPage.current.scrollIntoView({
-        behavior: 'smooth'
-      });
-    }
-  }, [displayRegister])
+  if (!display) {
+    return (
+      <Login
+        display={display}
+        setDisplay={setDisplay}
+      />
+    )
+  } else {
+    return (
+      <Register
+        display={display}
+        setDisplay={setDisplay}
+      />
+    )
+  }
+}
 
+
+function Login(props) {
   return (
-    <>
-      <div
-        className={styles['login']}
-        ref={loginPage}
-      >
+    <Animated
+      animateOnMount={true}
+      animationIn='slideInLeft'
+      animationOut='slideOutRight'
+    >
+      <div className={styles['login']}>
         <LoginForm 
-          setDisplayRegister={setDisplayRegister}
+          setDisplay={props.setDisplay}
         />
       </div>
-      <div 
-        className={styles['register']}
-        ref={registerPage}
-      >
-        Register Here
-      </div>
-    </>
+    </Animated>
   )
 }
 
+
+function Register(props) {
+  return (
+    <Animated
+      animateOnMount={true}
+      animationIn='slideInRight'
+      animationOut='slideOutRight'
+    >
+      <div 
+        className={styles['register']}
+        onClick={() => {
+          props.setDisplay(!props.display)
+        }}
+      >
+        Register Here
+      </div>
+    </Animated>
+  )
+}
+
+
 function LoginForm(props) {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = data => console.log(data);
   
   return (
@@ -96,7 +109,7 @@ function LoginForm(props) {
       <span 
         className={styles['redirect']}
         onClick={() => {
-          props.setDisplayRegister(true)
+          props.setDisplay(true)
         }}
       >
         Click here to register
