@@ -20,11 +20,63 @@
 
 
 .login-form {
-  width: calc(50vw - 40px);
+  width: calc(90vw - 40px);
   height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   padding: 20px 20px;
+  background-color: var(--main-color);
+  border-radius: var(--border-radius);
+  color: var(--text-color);
+}
+
+.login-form > .header {
+  font-size: 2rem;
+  margin: 20px 0px;
+  width: unset
+}
+
+.login-form > .title {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  width: 280px;
+}
+
+.login-form > input {
+  width: 280px;
+  height: 2rem;
+  margin: 10px 0px;
+  font-size: 1.2rem;
+  border-radius: var(--border-radius);
+  border: 2px solid var(--background-color);
+  outline: none;
+  transition: var(--speed);
+}
+
+.login-form .error {
+  font-size: 1rem;
+  margin-top: 0px;
+  color: var(--warning-color)
+}
+
+.login-form > .btn {
+  height: 3rem;
+  width: 6rem;
+  margin: 20px 0;
+  background-color: var(--main-color2);
+  border: none;
+  color: var(--text-color);
+}
+
+.login-form > span {
+  font-size: 0.8rem;
+  color: var(--text-color2);
+}
+
+.login-form > .redirect {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: var(--text-color);
 }
