@@ -33,15 +33,16 @@ function Navbar(props) {
   const menu = props.menu
 
   const user_data = useContext(UserContext);
-
-  if (user_data.state === null) {
+  console.log(user_data)
+  
+  if (user_data.user.state === null) {
     return (
       <div className={styles.navbar}>
         <Loader display={true}/>
       </div>
     )
   }
-  else if (user_data.state === 0) {
+  else if (user_data.user.state === 0) {
     // Navbar displayed when user is unAuthenticated
     return (
       <div className={styles.navbar} style={{
@@ -53,7 +54,7 @@ function Navbar(props) {
       </div>
     )
   }
-  else if (user_data.state === 1) {
+  else if (user_data.user.state === 1) {
     // Navbar displayed when user is Authenticated
     return (
       <div className={styles.navbar} style={{
@@ -72,13 +73,13 @@ function Navbar(props) {
             <Messages />
             <Friends />
             <Avatar 
-              user={user_data.user} 
+              image={user_data.user.user.image} 
               displayMenu={displayMenu} 
               menu={menu}
             />
           </div>
         </Animated>
-        <Menu display={menu} />
+        <Menu display={menu} signout={user_data.signout}/>
       </div>
     )
   }
@@ -110,10 +111,12 @@ function Menu(props) {
               </FontAwesomeIcon>
               <span>Settings</span>
             </div>
-            <div 
+            <motion.div 
               className={styles['menu-item']}
+              whileHover={{ cursor: 'pointer' }}
               onClick={() => {
-                postData(`${window.location.origin}/api/logout`)
+                postData('http://localhost:5000/api/logout', {})
+                props.signout()
               }}
             >
               <FontAwesomeIcon 
@@ -121,7 +124,7 @@ function Menu(props) {
                 icon={faSignOutAlt}>
               </FontAwesomeIcon>
               <span>Sign Out</span>
-            </div>
+            </motion.div>
           </Animated>
         </div>
       </Animated>
@@ -138,7 +141,7 @@ function Avatar(props) {
       whileHover={{ cursor: 'pointer'}}
     >
       <img 
-        src={props.user.image}
+        src={props.image}
         alt='User Avatar'
       />
     </motion.div>

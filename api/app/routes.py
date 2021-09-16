@@ -86,6 +86,7 @@ def register():
 @app.post('/api/logout')
 @login_required
 def user_logout():
+    print(f'{current_user.username} logged out')
     logout_user()
     return {'success': True}
 
