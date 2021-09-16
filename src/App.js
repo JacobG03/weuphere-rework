@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import EventsPage from './pages/EventsPage';
 import PostsPage from './pages/PostsPage';
@@ -12,28 +11,18 @@ import PeoplePage from './pages/EventsPage';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import Notifications from './components/Notifications';
-import { UserContextProvider } from './services/UserContext'
-
+import { UserContextProvider } from './context/UserContext'
 
 
 function App() {
   const [menu, displayMenu] = useState(false)
   const [notifications, updateNotifications] = useState([])
-
-  const dummy_data = {
-    'state': 0,
-    'user': {
-      'username': 'JacobG',
-      'image': 'https://pbs.twimg.com/profile_images/723681919561437186/1Zi2ShOs.jpg',
-    },
-  }
-
+  
   
   return (
     <Router>
       <UserContextProvider>
         <Navbar 
-          data={dummy_data} 
           menu={menu} 
           displayMenu={displayMenu}
         />

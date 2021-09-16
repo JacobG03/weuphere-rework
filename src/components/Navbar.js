@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link } from "react-router-dom";
 
 import styles from './navbar.module.css'
@@ -13,7 +13,7 @@ import {
   faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion';
-import { UserContext } from '../services/UserContext'
+import { UserContext } from '../context/UserContext'
 
 
 // Auth = 1
@@ -27,9 +27,9 @@ function Navbar(props) {
   const displayMenu = props.displayMenu 
   const menu = props.menu
 
-  const user = useContext(UserContext);
+  const user_data = useContext(UserContext);
 
-  if (user.state === null) {
+  if (user_data.state === null) {
     // Default navbar displayed while waiting for data
     return (
       <div className={styles.navbar}>
@@ -37,7 +37,7 @@ function Navbar(props) {
       </div>
     )
   }
-  else if (user.state === 0) {
+  else if (user_data.state === 0) {
     // Navbar displayed when user is unAuthenticated
     return (
       <div className={styles.navbar} style={{
@@ -49,7 +49,7 @@ function Navbar(props) {
       </div>
     )
   }
-  else if (user.state === 1) {
+  else if (user_data.state === 1) {
     // Navbar displayed when user is Authenticated
     return (
       <div className={styles.navbar} style={{
@@ -68,7 +68,7 @@ function Navbar(props) {
             <Messages />
             <Friends />
             <Avatar 
-              user={props.data.user} 
+              user={user_data.user} 
               displayMenu={displayMenu} 
               menu={menu}
             />

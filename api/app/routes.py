@@ -17,7 +17,7 @@ def index():
 @app.get('/api/auth')
 @app.post('/api/auth')
 def auth():
-    if current_user.is_authenticated and current_user.verified:
+    if current_user.is_authenticated:
         return {
             'state': 1,
             'user': {
@@ -34,6 +34,9 @@ def auth():
 @app.post('/api/login')
 def login():
     #? prevent spamming
+    if current_user.is_authenticated:
+        print('already auth')
+        return {'notify': True, 'message': 'You are already signed in!'}
 
     login_data = request.get_json()
 
@@ -44,7 +47,8 @@ def login():
         return {'success': False, 'message': 'Incorrect email or password.'}
 
 
-    login_user(user, remember=login_data['remember_me'])
+    login_user(user)
+    print('success')
     return {'success': True}
 
 

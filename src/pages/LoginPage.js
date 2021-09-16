@@ -1,10 +1,11 @@
 import React, { 
-  useState, 
+  useState,
 } from 'react';
 import { useForm } from 'react-hook-form'
 import styles from './loginPage.module.css'
 import { Animated } from 'react-animated-css';
 import { motion } from 'framer-motion';
+import { postData } from '../services/PostData'
 
 
 function LoginPage(props) {
@@ -64,7 +65,9 @@ function Register(props) {
 
 function RegisterForm(props) {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => (
+    console.log(data)
+  );
   
   return (
     <form
@@ -123,7 +126,7 @@ function RegisterForm(props) {
         whileTap={{ 
           scale: 0.9,
         }}
-      />
+        />
       <span>Already a user?</span>
       <span 
         className={styles['redirect']}
@@ -139,11 +142,14 @@ function RegisterForm(props) {
 
 function LoginForm(props) {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => {
+    postData(`${window.location.origin}/api/login`, data)
+  }
+  
   
   return (
     <form
-      className={styles['login-form']}
+    className={styles['login-form']}
       onSubmit={handleSubmit(onSubmit)}
     >
       <span className={styles['header']}>Login</span>
