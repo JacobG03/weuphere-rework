@@ -12,6 +12,8 @@ import PeoplePage from './pages/EventsPage';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import Notifications from './components/Notifications';
+import { UserContextProvider } from './services/UserContext'
+
 
 
 function App() {
@@ -26,13 +28,16 @@ function App() {
     },
   }
 
+  
   return (
     <Router>
-      <Navbar 
-        data={dummy_data} 
-        menu={menu} 
-        displayMenu={displayMenu}
-      />
+      <UserContextProvider>
+        <Navbar 
+          data={dummy_data} 
+          menu={menu} 
+          displayMenu={displayMenu}
+        />
+      </UserContextProvider>
       <Notifications
         notifications={notifications}
         updateNotifications={updateNotifications}

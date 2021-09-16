@@ -14,12 +14,21 @@ def index():
     return render_template('index.html')
 
 
-@app.get('/auth')
-@app.post('/auth')
+@app.get('/api/auth')
+@app.post('/api/auth')
 def auth():
     if current_user.is_authenticated and current_user.verified:
-        return redirect(url_for('index'))
-    return render_template('login.html', user=current_user)
+        return {
+            'state': 1,
+            'user': {
+                'username': current_user.username,
+                'image': current_user.image
+            }
+        }
+    return {
+        'state': 0,
+        'user': None
+        }
 
 
 @app.post('/api/login')
