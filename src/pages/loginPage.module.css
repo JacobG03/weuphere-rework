@@ -32,14 +32,26 @@
 }
 
 .login-form > .header {
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin: 20px 0px;
   width: unset
+}
+
+.login-form > .header-reg {
+  font-size: 1.5rem;
+  margin: 5px 0px;
+  width: unset;
 }
 
 .login-form > .title {
   font-size: 1.5rem;
   margin-top: 20px;
+  width: 280px;
+}
+
+.login-form > .title-reg {
+  font-size: 1rem;
+  margin-top: 5px;
   width: 280px;
 }
 
@@ -80,3 +92,17 @@
   color: var(--text-color);
 }
 
+@media only screen and (min-width : 480px) {
+
+}
+
+@media only screen and (min-width : 768px) {
+
+}
+
+@media only screen and (min-width : 992px) {
+}
+
+@media only screen and (min-width : 1200px) {
+
+}

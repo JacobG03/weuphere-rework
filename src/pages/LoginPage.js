@@ -71,9 +71,9 @@ function RegisterForm(props) {
       className={styles['login-form']}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <span className={styles['header']}>Register</span>
+      <span className={styles['header-reg']}>Register</span>
 
-      <span className={styles['title']}>Username:</span>
+      <span className={styles['title-reg']}>Username:</span>
       <input {...register('username', { required: true })} />
       {errors.username &&
       <Animated animationIn='fadeIn'>
@@ -83,7 +83,7 @@ function RegisterForm(props) {
       </Animated>
       }
 
-      <span className={styles['title']}>Email:</span>
+      <span className={styles['title-reg']}>Email:</span>
       <input {...register('email', { required: true })} />
       {errors.email &&
       <Animated animationIn='fadeIn'>
@@ -93,7 +93,7 @@ function RegisterForm(props) {
       </Animated>
       }
       
-      <span className={styles['title']}>Password:</span>
+      <span className={styles['title-reg']}>Password:</span>
       <input type='password' {...register('password', { required: true })} />
       {errors.password &&
       <Animated animationIn='fadeIn'>
@@ -104,7 +104,7 @@ function RegisterForm(props) {
       </Animated>
       }
 
-      <span className={styles['title']}>Repeat Password:</span>
+      <span className={styles['title-reg']}>Repeat Password:</span>
       <input type='password' {...register('password2', { required: true })} />
       {errors.password2 &&
       <Animated animationIn='fadeIn'>
