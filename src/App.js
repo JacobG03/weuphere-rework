@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar'
 import {
   BrowserRouter as Router,
@@ -18,11 +18,11 @@ function App() {
   const [menu, displayMenu] = useState(false)
   const [notifications, updateNotifications] = useState([])
   
-  
+
   return (
     <Router>
       <UserContextProvider>
-        <Navbar 
+        <Navbar
           menu={menu} 
           displayMenu={displayMenu}
         />

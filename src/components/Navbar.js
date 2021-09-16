@@ -1,4 +1,8 @@
-import React, { useContext } from 'react';
+import React, { 
+  useContext, 
+  useState,
+  useEffect
+} from 'react';
 import { Link } from "react-router-dom";
 
 import styles from './navbar.module.css'
@@ -14,6 +18,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion';
 import { UserContext } from '../context/UserContext'
+import { postData } from '../services/PostData';
 
 
 // Auth = 1
@@ -30,7 +35,6 @@ function Navbar(props) {
   const user_data = useContext(UserContext);
 
   if (user_data.state === null) {
-    // Default navbar displayed while waiting for data
     return (
       <div className={styles.navbar}>
         <Loader display={true}/>
@@ -106,7 +110,12 @@ function Menu(props) {
               </FontAwesomeIcon>
               <span>Settings</span>
             </div>
-            <div className={styles['menu-item']}>
+            <div 
+              className={styles['menu-item']}
+              onClick={() => {
+                postData(`${window.location.origin}/api/logout`)
+              }}
+            >
               <FontAwesomeIcon 
                 className={styles['menu-icon']}
                 icon={faSignOutAlt}>

@@ -11,7 +11,15 @@ const UserContextProvider = ({ children }) => {
     const fetchUser = async () => {
       await fetch(`${window.location.origin}/api/auth`)
         .then((response) => response.json())
-        .then((result) => setUser(result))
+        .then((result) => {
+          setUser(result)
+          if (result.state === null) {
+            setTimeout(() => {
+              fetchUser()
+              console.log('here')
+            }, 3000)
+          }
+        })
         .catch((error) => console.log("An error occured"));
     };
 

@@ -83,7 +83,7 @@ def register():
     return {'success': True}
 
 
-@app.post('/api/users/logout')
+@app.post('/api/logout')
 @login_required
 def user_logout():
     logout_user()
