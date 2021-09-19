@@ -83,8 +83,8 @@ def register():
     return {'success': True}
 
 
+@app.get('/api/logout')
 @app.post('/api/logout')
-@login_required
 def user_logout():
     print(f'{current_user.username} logged out')
     logout_user()

@@ -115,7 +115,6 @@ function Menu(props) {
               className={styles['menu-item']}
               whileHover={{ cursor: 'pointer' }}
               onClick={() => {
-                postData('http://localhost:5000/api/logout', {})
                 props.signout()
               }}
             >

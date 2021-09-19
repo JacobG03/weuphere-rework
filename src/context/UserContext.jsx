@@ -5,6 +5,8 @@ import React, {
   useCallback,
   useMemo
 } from "react";
+import postData from '../services/PostData'
+
 
 const UserContext = createContext();
 
@@ -14,8 +16,10 @@ const UserContextProvider = ({ children }) => {
   });
 
   const signout = useCallback(() => {
+    postData(`${window.location.origin}/api/logout`, {})
     setUser({
-      state: 0
+      state: 0,
+      user: null
     });
   }, []);
   
