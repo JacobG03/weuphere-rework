@@ -6,8 +6,10 @@ import styles from './loginPage.module.css'
 import { Animated } from 'react-animated-css';
 import { motion } from 'framer-motion';
 import postData from '../services/PostData'
+import Notification from '../components/Notification';
 
 
+// Main login page
 function LoginPage(props) {
   const [display, setDisplay] = useState(false)
 
@@ -16,6 +18,8 @@ function LoginPage(props) {
       <Login
         display={display}
         setDisplay={setDisplay}
+        notifications={props.notifications}
+        updateNotifications={props.updateNotifications}
       />
     )
   } else {
@@ -29,6 +33,7 @@ function LoginPage(props) {
 }
 
 
+// Login form parent component
 function Login(props) {
   return (
     <Animated
@@ -37,7 +42,9 @@ function Login(props) {
       animationOut='slideOutRight'
     >
       <div className={styles['login']}>
-        <LoginForm 
+        <LoginForm
+          notifications={props.notifications}
+          updateNotifications={props.updateNotifications}
           setDisplay={props.setDisplay}
         />
       </div>
@@ -46,6 +53,7 @@ function Login(props) {
 }
 
 
+// Register form parent component
 function Register(props) {
   return (
     <Animated
@@ -63,6 +71,9 @@ function Register(props) {
   )
 }
 
+
+
+// Register form
 function RegisterForm(props) {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = data => (
@@ -140,10 +151,24 @@ function RegisterForm(props) {
   )
 }
 
+
+
+// Login form
 function LoginForm(props) {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = data => {
     postData(`${window.location.origin}/api/login`, data)
+    .then(result => {
+      if(result.success) {
+        // user.auth() (refresh user data)
+        // redirect to main page
+      } 
+      console.log(result.message)
+      props.updateNotifications([
+        ...props.notifications,
+        <Notification message={result.message} key={props.notifications.length}/>
+      ])
+    })
   }
   
   

@@ -1,7 +1,5 @@
 import React, { 
   useContext, 
-  useState,
-  useEffect
 } from 'react';
 import { Link } from "react-router-dom";
 
@@ -18,24 +16,23 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion';
 import { UserContext } from '../context/UserContext'
-import { postData } from '../services/PostData';
 
 
 // Auth = 1
 // unAuth = 0
 // default = null
 
-// Transition smoothly between states
-
-
 function Navbar(props) {
   const displayMenu = props.displayMenu 
   const menu = props.menu
 
   const user_data = useContext(UserContext);
-  console.log(user_data)
   
   if (user_data.user.state === null) {
+    setTimeout(() => {
+      user_data.auth()
+    }, 3000)
+    
     return (
       <div className={styles.navbar}>
         <Loader display={true}/>

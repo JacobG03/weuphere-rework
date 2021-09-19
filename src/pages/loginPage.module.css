@@ -101,6 +101,9 @@
 }
 
 @media only screen and (min-width : 992px) {
+  .login-form {
+    width: calc(30vw - 40px);
+  }
 }
 
 @media only screen and (min-width : 1200px) {

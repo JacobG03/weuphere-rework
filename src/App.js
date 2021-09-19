@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar'
 import {
   BrowserRouter as Router,
@@ -49,7 +49,10 @@ function App() {
             <EventsPage />
           </Route>
           <Route path='/login' exact>
-            <LoginPage />
+            <LoginPage 
+              notifications={notifications}
+              updateNotifications={updateNotifications}  
+            />
           </Route>
         </Switch>
       </div>

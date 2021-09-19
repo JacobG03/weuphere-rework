@@ -15,6 +15,7 @@ const UserContextProvider = ({ children }) => {
     state: null
   });
 
+  // Sign out user
   const signout = useCallback(() => {
     postData(`${window.location.origin}/api/logout`, {})
     setUser({
@@ -22,7 +23,12 @@ const UserContextProvider = ({ children }) => {
       user: null
     });
   }, []);
+
+  const auth = useCallback(() => {
+    fetchUser()
+  }, [])
   
+  // Load user data
   const fetchUser = async () => {
     await fetch(`${window.location.origin}/api/auth`)
       .then((response) => response.json())
@@ -33,14 +39,14 @@ const UserContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    
     fetchUser();
   }, []);
 
   const contextValue = useMemo(() => ({
     user,
-    signout
-  }), [user, signout])
+    signout,
+    auth
+  }), [user, signout, auth])
 
 
   return (

@@ -49,7 +49,10 @@ def login():
 
     login_user(user)
     print('success')
-    return {'success': True}
+    return {
+        'success': True,
+        'message': 'Successfully logged in!'
+        }
 
 
 @app.post('/api/register')
