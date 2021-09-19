@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import styles from './loginPage.module.css'
 import { Animated } from 'react-animated-css';
 import { motion } from 'framer-motion';
-import { postData } from '../services/PostData'
+import postData from '../services/PostData'
 
 
 function LoginPage(props) {
