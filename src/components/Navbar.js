@@ -1,8 +1,7 @@
 import React, { 
   useContext, 
 } from 'react';
-import { Link } from "react-router-dom";
-
+import { Link, Redirect } from "react-router-dom";
 import styles from './navbar.module.css'
 import {Animated} from "react-animated-css";
 import { WaveTopBottomLoading } from 'react-loadingg';
@@ -16,7 +15,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion';
 import { UserContext } from '../context/UserContext'
-
+import Notification from './Notification';
 
 // Auth = 1
 // unAuth = 0
@@ -28,11 +27,7 @@ function Navbar(props) {
 
   const user_data = useContext(UserContext);
   
-  if (user_data.user.state === null) {
-    setTimeout(() => {
-      user_data.auth()
-    }, 3000)
-    
+  if (user_data.user.state === null) {    
     return (
       <div className={styles.navbar}>
         <Loader display={true}/>
@@ -76,7 +71,12 @@ function Navbar(props) {
             />
           </div>
         </Animated>
-        <Menu display={menu} signout={user_data.signout}/>
+        <Menu 
+          display={menu}
+          signout={user_data.signout}
+          notifications={props.notifications}
+          updateNotifications={props.updateNotifications}
+        />
       </div>
     )
   }
@@ -113,6 +113,11 @@ function Menu(props) {
               whileHover={{ cursor: 'pointer' }}
               onClick={() => {
                 props.signout()
+                localStorage.removeItem('user')
+                props.updateNotifications([
+                  ...props.notifications,
+                  <Notification message='Logged out successfully' key={props.notifications.length}/>
+                ])
               }}
             >
               <FontAwesomeIcon 

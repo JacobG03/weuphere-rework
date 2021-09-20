@@ -1,17 +1,27 @@
 import React, { 
   useState,
+  useContext
 } from 'react';
+import { Redirect } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import styles from './loginPage.module.css'
 import { Animated } from 'react-animated-css';
 import { motion } from 'framer-motion';
 import postData from '../services/PostData'
 import Notification from '../components/Notification';
+import { UserContext } from '../context/UserContext'
 
 
 // Main login page
 function LoginPage(props) {
   const [display, setDisplay] = useState(false)
+  const userContext = useContext(UserContext);
+
+  if (userContext.user.user !== null || userContext.user.username) {
+    return (
+      <Redirect to='/' />
+    )
+  }
 
   if (!display) {
     return (
@@ -20,6 +30,7 @@ function LoginPage(props) {
         setDisplay={setDisplay}
         notifications={props.notifications}
         updateNotifications={props.updateNotifications}
+        userContext={userContext}
       />
     )
   } else {
@@ -46,6 +57,7 @@ function Login(props) {
           notifications={props.notifications}
           updateNotifications={props.updateNotifications}
           setDisplay={props.setDisplay}
+          userContext={props.userContext}
         />
       </div>
     </Animated>
@@ -160,21 +172,23 @@ function LoginForm(props) {
     postData(`${window.location.origin}/api/login`, data)
     .then(result => {
       if(result.success) {
-        // user.auth() (refresh user data)
-        // redirect to main page
+        localStorage.setItem('user', JSON.stringify(result.user))
       } 
-      console.log(result.message)
       props.updateNotifications([
         ...props.notifications,
         <Notification message={result.message} key={props.notifications.length}/>
       ])
+
+      setTimeout(() => {
+        props.userContext.auth()
+      })
     })
   }
   
   
   return (
     <form
-    className={styles['login-form']}
+      className={styles['login-form']}
       onSubmit={handleSubmit(onSubmit)}
     >
       <span className={styles['header']}>Login</span>

@@ -12,8 +12,10 @@ const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState({
-    state: null
+    state: null,
+    user: null,
   });
+  console.log(user)
 
   // Sign out user
   const signout = useCallback(() => {
@@ -26,6 +28,7 @@ const UserContextProvider = ({ children }) => {
 
   const auth = useCallback(() => {
     fetchUser()
+    console.log('yo')
   }, [])
   
   // Load user data
@@ -39,7 +42,14 @@ const UserContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchUser();
+    if (localStorage.getItem('user')) {
+      let user = localStorage.getItem('user');
+      user = JSON.parse(user)
+      setUser(user)
+    } else {
+      console.log('fetching')
+      fetchUser()
+    }
   }, []);
 
   const contextValue = useMemo(() => ({
@@ -47,7 +57,6 @@ const UserContextProvider = ({ children }) => {
     signout,
     auth
   }), [user, signout, auth])
-
 
   return (
     <UserContext.Provider value={contextValue}>

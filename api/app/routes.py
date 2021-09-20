@@ -51,8 +51,15 @@ def login():
     print('success')
     return {
         'success': True,
-        'message': 'Successfully logged in!'
+        'message': 'Successfully logged in!',
+        'user': {
+            'state': 1,
+            'user': {
+                'username': current_user.username,
+                'image': current_user.image
+            }
         }
+    }
 
 
 @app.post('/api/register')

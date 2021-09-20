@@ -20,43 +20,43 @@ function App() {
   
 
   return (
-    <Router>
-      <UserContextProvider>
+    <UserContextProvider>
+      <Router>
         <Navbar
           menu={menu} 
           displayMenu={displayMenu}
         />
-      </UserContextProvider>
-      <Notifications
-        notifications={notifications}
-        updateNotifications={updateNotifications}
-      />
-      <div className='container'>
-        <Switch>
-          <Route path='/' exact>
-            <HomePage
-              notifications={notifications}
-              updateNotifications={updateNotifications}
-            />
-          </Route>
-          <Route path='/people' exact>
-            <PeoplePage />
-          </Route>
-          <Route path='/posts' exact>
-            <PostsPage />
-          </Route>
-          <Route path='/events' exact>
-            <EventsPage />
-          </Route>
-          <Route path='/login' exact>
-            <LoginPage 
-              notifications={notifications}
-              updateNotifications={updateNotifications}  
-            />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+        <Notifications
+          notifications={notifications}
+          updateNotifications={updateNotifications}
+        />
+        <div className='container'>
+          <Switch>
+            <Route path='/' exact>
+              <HomePage
+                notifications={notifications}
+                updateNotifications={updateNotifications}
+              />
+            </Route>
+            <Route path='/people' exact>
+              <PeoplePage />
+            </Route>
+            <Route path='/posts' exact>
+              <PostsPage />
+            </Route>
+            <Route path='/events' exact>
+              <EventsPage />
+            </Route>
+            <Route path='/login' exact>
+              <LoginPage 
+                notifications={notifications}
+                updateNotifications={updateNotifications}  
+              />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </UserContextProvider>
   );
 }
 
