@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 import { UserContext } from './context/UserContext';
 import Navbar from './components/Navbar';
+import LoginPage from './pages/LoginPage'
+import Notifications from './components/Notifications';
 
 
 function App() {
@@ -55,7 +57,7 @@ function App() {
             <>Welcome to We Up Here</>
           </Route>
           <Route path='/login' exact>
-            <>Login Page</>
+            <LoginPage />
           </Route>
         </div>
       </Router>
@@ -63,12 +65,6 @@ function App() {
   );
 }
 
-
-function Notifications() {
-  return (
-    <>notifications</>
-  )
-}
 
 function Followed() {
   return (

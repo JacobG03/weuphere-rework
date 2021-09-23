@@ -1,5 +1,6 @@
-import React, {
-  useState
+import React, { 
+  useEffect, 
+  useRef,
 } from 'react'
 import { 
   Link
@@ -10,7 +11,6 @@ import { motion } from 'framer-motion'
 
 function Navbar(props) {
   const user = props.user
-  console.log(user)
 
   return (
     <nav className={styles['navbar']}>
@@ -28,16 +28,19 @@ function Navbar(props) {
 function Logo() {
   return (
     <Link to='/home'>
-      <div className={styles['item']}>
+      <motion.div 
+        className={styles['item']}
+      >
         <span>We Up Here</span>
-      </div>
+      </motion.div>
     </Link>
   )
 }
 
 
 function Auth(props) {
-  const user = props.user
+  // const user = props.user
+  
   return (
     <div className={styles['item']}>Authenticated</div>
   )
@@ -45,15 +48,16 @@ function Auth(props) {
 
 
 function UnAuth() {
+
   return (
     <Link to='/login'>
       <div className={styles['item']}>
         <motion.button 
           className={styles['button-login']}
           whileTap={{ 
-            boxShadow: 'none',
+            boxShadow: 'rgba(255, 255, 255, 0.1) 0px 0px 0px 0px inset',
             transform: 'translateY(2px)'
-        }}
+          }}
         >
           Sign In
         </motion.button>

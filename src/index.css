@@ -1,21 +1,22 @@
 :root {
   --background-color: #ffffff;
   --main-color: #20232a;
-  --main-color2: #36383f;
+  --main-color2: #363B47;
   --main-color3: #4c4e54;
   --main-color4: #626569;
   --text-color: #ffffff;
   --text-color2: rgb(255, 255, 255, 0.75);
   --text-color3: rgb(255, 255, 255, 0.55);
   --text-color4: rgb(255, 255, 255, 0.255);
-  --accent-color: #61dafb;
+  --accent-color: #055A5A;
   --warning-color: #e72222;
-  --main-color-shadow: 0px 4px 20px 2px rgba(0, 0, 0, 0.5);
-  --background-color-shadow: 0px 4px 20px 2px rgba(255, 255, 255, 0.5);
   --border-radius: 6px;
   --speed: 300ms;
-  --shadow-color: hsl(0deg 0% 0% / 0.25);
-  --shadow-color-accent: hsl(193deg 95% 68%);
+  --depth: inset 0 -2px 0 rgb(255, 255, 255, 0.1);
+  --depth-shadow: inset 0 2px 2px hsla(0, 0%, 0%, 0.1);
+  --elevation: 0.8px 1.6px 1.6px hsl(0deg 0% 0% / 48);
+  --elevation2: 3.2px 6.4px 6.4px hsl(0deg 0% 0% / 20);
+  --elevation3: 8px 16px 16px hsl(0deg 0% 0% / 25);
 }
 
 html {
@@ -55,6 +56,11 @@ button {
 a {
   text-decoration: none;
   cursor: default;
+}
+
+input {
+  border: none;
+  outline: none;
 }
 
 
