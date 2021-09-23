@@ -30,7 +30,7 @@ def user_login():
 
   # retrieves login data
   login_data = request.get_json()
-
+  
   user = User.query.filter_by(email=login_data['email']).first()
 
   if not user:

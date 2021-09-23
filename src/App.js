@@ -1,5 +1,4 @@
 import React, { 
-  useState,
   useContext,
   useEffect
 } from 'react';
@@ -9,7 +8,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import { UserContext } from './context/UserContext'
+import { UserContext } from './context/UserContext';
+import Navbar from './components/Navbar';
 
 
 function App() {
@@ -28,33 +28,34 @@ function App() {
         <Notifications />
         <div className={'container'}>
           <Route path='/home'>
-            <div>
-              <Link to='/home/people'>
-                <div>People</div>
-              </Link>
-              <Link to='/home/posts'>
-                <div>Posts</div>
-              </Link>
-              <Link to='/home/events'>
-                <div>Events</div>
-              </Link>
-              <Switch>
-                <Route path='/home/people' exact>
-                  <div>people</div>
-                </Route>
-                <Route path='/home/posts' exact>
-                  <div>posts</div>
-                </Route>
-                <Route path='/home/events' exact>
-                  <div>events</div>
-                </Route>
-              </Switch>
-            </div>
             <Followed />
             <Chat />
+            <Link to='/home/people'>
+              <div>People</div>
+            </Link>
+            <Link to='/home/posts'>
+              <div>Posts</div>
+            </Link>
+            <Link to='/home/events'>
+              <div>Events</div>
+            </Link>
+            <Switch>
+              <Route path='/home/people' exact>
+                <div>people</div>
+              </Route>
+              <Route path='/home/posts' exact>
+                <div>posts</div>
+              </Route>
+              <Route path='/home/events' exact>
+                <div>events</div>
+              </Route>
+            </Switch>
           </Route>
           <Route path='/' exact>
             <>Welcome to We Up Here</>
+          </Route>
+          <Route path='/login' exact>
+            <>Login Page</>
           </Route>
         </div>
       </Router>
@@ -62,11 +63,6 @@ function App() {
   );
 }
 
-function Navbar() {
-  return (
-    <>Navbar</>
-  )
-}
 
 function Notifications() {
   return (
