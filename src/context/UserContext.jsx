@@ -1,29 +1,29 @@
 import React, { 
   createContext, 
   useState, 
-  useEffect, 
   useCallback,
   useMemo,
 } from "react";
 import postData from "../services/postData";
 
 
-const UserContext = createContext();
-
 // Returns either user: null OR user: 'image', etc.
 const fetchUser = () => {
   var user = null;
   postData(`${window.location.origin}/api/user`, {})
-    .then(result => {
-      user = result.user
-    })
+  .then(result => {
+    user = result.user
+  })
   return user
-  };
+};
+
+
+const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(fetchUser());
 
-
+  // Updates user state with the given paramater
   const update = useCallback((data) => {
     setUser(data)
   }, [])
@@ -42,7 +42,8 @@ const UserContextProvider = ({ children }) => {
     })
   }, []);
   
-  // Updates user value from server response
+  // Retrieves user data from server
+  // and updates user state with that data
   const refresh = useCallback(() => {
     let user = fetchUser()
     setUser(user)
