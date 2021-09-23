@@ -1,62 +1,37 @@
-import React, { useState } from 'react';
-import Navbar from './components/Navbar'
+import React, { 
+  useState,
+  useContext,
+  useEffect
+} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
-import EventsPage from './pages/EventsPage';
-import PostsPage from './pages/PostsPage';
-import PeoplePage from './pages/EventsPage';
-import LoginPage from './pages/LoginPage';
-import HomePage from './pages/HomePage';
-import Notifications from './components/Notifications';
-import { UserContextProvider } from './context/UserContext'
+import { UserContext } from './context/UserContext'
 
 
 function App() {
-  const [menu, displayMenu] = useState(false)
-  const [notifications, updateNotifications] = useState([])
+  const userContext = useContext(UserContext);
+  const user = userContext.user
   
-
+  useEffect(() => {
+    console.log(user)
+  }, [user])
+  
   return (
-    <UserContextProvider>
-      <Router>
-        <Navbar
-          menu={menu} 
-          displayMenu={displayMenu}
-        />
-        <Notifications
-          notifications={notifications}
-          updateNotifications={updateNotifications}
-        />
-        <div className='container'>
-          <Switch>
-            <Route path='/' exact>
-              <HomePage
-                notifications={notifications}
-                updateNotifications={updateNotifications}
-              />
-            </Route>
-            <Route path='/people' exact>
-              <PeoplePage />
-            </Route>
-            <Route path='/posts' exact>
-              <PostsPage />
-            </Route>
-            <Route path='/events' exact>
-              <EventsPage />
-            </Route>
-            <Route path='/login' exact>
-              <LoginPage 
-                notifications={notifications}
-                updateNotifications={updateNotifications}  
-              />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
-    </UserContextProvider>
+    <>
+      <div onClick={() => {
+        userContext.update({'username': 'jacob'})
+      }}>Update</div>
+      <div onClick={() => {
+        userContext.refresh()
+      }}>Refresh</div>
+      <div onClick={() => {
+        userContext.signout()
+      }}>Signout</div>
+      <div>{JSON.stringify(user)}</div>
+    </>
   );
 }
 

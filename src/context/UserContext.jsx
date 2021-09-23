@@ -3,60 +3,57 @@ import React, {
   useState, 
   useEffect, 
   useCallback,
-  useMemo
+  useMemo,
 } from "react";
-import postData from '../services/PostData'
+import postData from "../services/postData";
 
 
 const UserContext = createContext();
 
-const UserContextProvider = ({ children }) => {
-  const [user, setUser] = useState({
-    state: null,
-    user: null,
-  });
-  console.log(user)
-
-  // Sign out user
-  const signout = useCallback(() => {
-    postData(`${window.location.origin}/api/logout`, {})
-    setUser({
-      state: 0,
-      user: null
-    });
-  }, []);
-
-  const auth = useCallback(() => {
-    fetchUser()
-    console.log('yo')
-  }, [])
-  
-  // Load user data
-  const fetchUser = async () => {
-    await fetch(`${window.location.origin}/api/auth`)
-      .then((response) => response.json())
-      .then((result) => {
-        setUser(result)
-      })
-      .catch((error) => console.log("An error occured"));
+// Returns either user: null OR user: 'image', etc.
+const fetchUser = () => {
+  var user = null;
+  postData(`${window.location.origin}/api/user`, {})
+    .then(result => {
+      user = result.user
+    })
+  return user
   };
 
-  useEffect(() => {
-    if (localStorage.getItem('user')) {
-      let user = localStorage.getItem('user');
-      user = JSON.parse(user)
-      setUser(user)
-    } else {
-      console.log('fetching')
-      fetchUser()
-    }
+const UserContextProvider = ({ children }) => {
+  const [user, setUser] = useState(fetchUser());
+
+
+  const update = useCallback((data) => {
+    setUser(data)
+  }, [])
+
+  // returns boolean value
+  const signout = useCallback(() => {
+    postData(`${window.location.origin}/api/user/logout`, {})
+    .then(result => {
+      if(result.success) {
+        setUser(null)
+        console.log('User logged out')
+      } else {
+        // Notify error
+        console.log('Logout Error')
+      }
+    })
   }, []);
+  
+  // Updates user value from server response
+  const refresh = useCallback(() => {
+    let user = fetchUser()
+    setUser(user)
+  }, [])
 
   const contextValue = useMemo(() => ({
     user,
     signout,
-    auth
-  }), [user, signout, auth])
+    refresh,
+    update
+  }), [user, signout, refresh, update])
 
   return (
     <UserContext.Provider value={contextValue}>

@@ -15,4 +15,4 @@ async function postData(url = '', data = {}) {
   return response.json();
 }
 
-export default postData
+export default postData;
