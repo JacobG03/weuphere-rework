@@ -1,6 +1,6 @@
 import React, {} from 'react'
 import styles from './LoginForm.module.css'
-import { set, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion';
 
 
@@ -45,10 +45,11 @@ function LoginForm(props) {
       <div className={styles['remember-box']}>
         <input 
           className={styles['remember']}
+          id='remember'
           type='checkbox'
           {...register('remember')}
         />
-        <span>Remember me</span>
+        <label htmlFor='remember'>Remember me</label>
       </div>
       <motion.input
         value='Sign in'
