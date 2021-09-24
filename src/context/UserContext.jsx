@@ -15,7 +15,7 @@ import getData from "../services/getData";
 const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(false);
   console.log('User:')
   console.log(user)
 

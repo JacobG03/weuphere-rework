@@ -17,7 +17,7 @@ function App() {
   const userContext = useContext(UserContext);
   const user = userContext.user
   
-  if (user === null) {
+  if (user === false) {
     return null
   }
 
