@@ -1,6 +1,5 @@
 import React, { 
   useContext,
-  useEffect
 } from 'react';
 import {
   BrowserRouter as Router,
@@ -18,10 +17,9 @@ function App() {
   const userContext = useContext(UserContext);
   const user = userContext.user
   
-
-  useEffect(() => {
-    console.log('App re-rendered due to user update.')
-  }, [user])
+  if (user === null) {
+    return null
+  }
 
   return (
     <>

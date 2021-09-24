@@ -51,7 +51,12 @@ def user_login():
 
 @app.post('/api/user/logout')
 def user_logout():
-  print(f'{current_user.username} logged out.')
+  try:
+    print(f'{current_user.username} logged out.')
+  except AttributeError:
+    print('Anonymous user tried to logout.')
+    # Prevent spamming this
+  
   logout_user()
   response = {'success': True}
   return jsonify(response), 200

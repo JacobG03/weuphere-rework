@@ -2,7 +2,6 @@ import React, {} from 'react'
 import styles from './RegisterForm.module.css'
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion';
-import postData from '../../services/postData';
 
 
 function RegisterForm(props) {
