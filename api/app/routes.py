@@ -1,25 +1,25 @@
 from app import app
 from flask import request, jsonify
-from flask_login import current_user, logout_user
+from flask_login import current_user, logout_user, login_user
 from app.models import User
 
 
 @app.post('/api/user')
 def user():
   print('User fetched')
-  # returns user: null
-  if current_user.is_anonymous:
-    return {
-      'user': None,
-    }
   # returns authenticated user
-  elif current_user.is_authenticated:
+  print(current_user.is_authenticated)
+  if current_user.is_authenticated:
     return {
       'user': {
         'username': current_user.username,
         'avatar': current_user.image,
       }
     }
+  return {
+    'user': None,
+  }
+  # returns user: null
 
 
 @app.post('/api/user/login')
@@ -34,13 +34,24 @@ def user_login():
   user = User.query.filter_by(email=login_data['email']).first()
 
   if not user:
-      return {'success': False, 'message': 'Incorrect email or password.'}
+      return {'success': False, 'msg': 'Incorrect email or password.'}
   if user.password != login_data['password']:
-      return {'success': False, 'message': 'Incorrect email or password.'}
+      return {'success': False, 'msg': 'Incorrect email or password.'}
 
+  login_user(user)
+  print(f'{user.username} logged in.')
+  return {
+      'success': True,
+      'msg': 'Logged in successfully!',
+      'user': {
+        'username': current_user.username,
+        'avatar': current_user.image,
+      }
+    }
 
 @app.post('/api/user/logout')
 def user_logout():
+  print(f'{current_user.username} logged out.')
   logout_user()
   response = {'success': True}
   return jsonify(response), 200

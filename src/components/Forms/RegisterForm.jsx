@@ -2,12 +2,13 @@ import React, {} from 'react'
 import styles from './RegisterForm.module.css'
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion';
+import postData from '../../services/postData';
 
 
 function RegisterForm(props) {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = (data) => console.log(data);
   const setForm = props.setForm;
+  const onSubmit = (data) => console.log(data)
 
   return (
     <form 

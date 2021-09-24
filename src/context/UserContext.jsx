@@ -10,7 +10,7 @@ import postData from "../services/postData";
 // Returns either user: null OR user: 'image', etc.
 const fetchUser = () => {
   var user = null;
-  postData(`${window.location.origin}/api/user`, {})
+  postData('/api/user', {})
   .then(result => {
     user = result.user
   })
@@ -21,7 +21,10 @@ const fetchUser = () => {
 const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
-  const [user, setUser] = useState(fetchUser());
+  const [user, setUser] = useState(
+    postData('/api/user', {})
+    .then(user => user)
+  );
 
   // Updates user state with the given paramater
   const update = useCallback((data) => {
@@ -30,7 +33,7 @@ const UserContextProvider = ({ children }) => {
 
   // returns boolean value
   const signout = useCallback(() => {
-    postData(`${window.location.origin}/api/user/logout`, {})
+    postData('/api/user/logout', {})
     .then(result => {
       if(result.success) {
         setUser(null)

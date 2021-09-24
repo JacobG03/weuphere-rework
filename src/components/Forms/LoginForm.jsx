@@ -2,12 +2,22 @@ import React, {} from 'react'
 import styles from './LoginForm.module.css'
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion';
+import postData from '../../services/postData';
 
 
 function LoginForm(props) {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = (data) => console.log(data);
   const setForm = props.setForm;
+  const onSubmit = (data) => {
+    postData('/api/user/login', data)
+    .then(response => {
+      if (response.success) {
+        props.userContext.update(response.user)
+      }
+      // Display notification with response.msg
+      console.log(response.msg)
+    })
+  }
 
   return (
     <form 

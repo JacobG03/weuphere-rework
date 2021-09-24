@@ -8,6 +8,8 @@ import { motion } from 'framer-motion'
 
 function Navbar(props) {
   const user = props.user
+  console.log('User')
+  console.log(user)
 
   return (
     <nav className={styles['navbar']}>
