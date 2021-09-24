@@ -4,7 +4,7 @@
   padding: 10px 20px;
   background-color: var(--main-color);
   border-radius: var(--border-radius);
-  box-shadow: var(--elevation2);
+  box-shadow: var(--elevation3);
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -27,7 +27,7 @@
 }
 
 .label {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: var(--text-color);
 }
 
@@ -35,7 +35,7 @@
   width: calc(100% - 10px);
   height: 2rem;
   margin: 5px 0px;
-  background-color: var(--main-color2);
+  background-color: var(--main-color-dark);
   box-shadow: 
     var(--depth),
     var(--depth-shadow);
@@ -54,8 +54,8 @@
 .submit {
   width: 6rem;
   height: 3rem;
-  background-color: var(--main-color2);
-  box-shadow: var(--depth);
+  background-color: var(--accent-color);
+  box-shadow: var(--height);
   border-radius: var(--border-radius);
   padding: 5px 5px;
   font-size: 1rem;
@@ -75,7 +75,6 @@
 .remember {
   width: 24px;
   height: 24px;
-  background-color: aqua;
   margin: 0px 10px 0px 0px;
 }
 

@@ -24,12 +24,13 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar user={user} />
+        <Navbar user={user} logout={userContext.logout} />
         <Notifications />
         <div className={'container'}>
           <Route path='/home'>
             <Followed />
             <Chat />
+
             <Link to='/home/people'>
               <div>People</div>
             </Link>
@@ -62,6 +63,45 @@ function App() {
     </>
   );
 }
+
+/*
+function HomePage() {
+
+  return (
+    <div>
+      <Header>
+        <Link to='/home/people'>
+          <div>People</div>
+        </Link>
+        <Link to='/home/posts'>
+          <div>Posts</div>
+        </Link>
+        <Link to='/home/events'>
+          <div>Events</div>
+        </Link>
+      </Header>
+      <Content>
+        const [input, setInput] = useState(null)
+        <Search setInput/>
+        <Switch>
+          <Route path='/home/people' exact>
+            <PeopleContent input>
+              <People input/>
+              <Chat input/>
+            </PeopleContent>
+          </Route>
+          <Route path='/home/posts' exact>
+            <PostsContent /> ...
+          </Route>
+          <Route path='/home/events' exact>
+            <EventsContent /> ...
+          </Route>
+        </Switch>
+      </Content>
+    </div>
+  )
+}
+*/
 
 
 function Followed() {

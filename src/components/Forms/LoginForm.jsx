@@ -24,9 +24,7 @@ function LoginForm(props) {
       className={styles['login-form']}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <span className={styles['header']}>
-        Login
-      </span>
+      <span className={styles['header']}>Login</span>
       <div className={styles['input-box']}>
         <span className={styles['label']}>Email:</span>
         <input
@@ -34,6 +32,7 @@ function LoginForm(props) {
             'email',
             {required: true}
           )}
+          type='email'
           placeholder='Email'
           className={styles['input']}
         />

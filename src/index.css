@@ -1,5 +1,6 @@
 :root {
   --background-color: #ffffff;
+  --main-color-dark: #1C1F25;
   --main-color: #20232a;
   --main-color2: #363B47;
   --main-color3: #4c4e54;
@@ -8,15 +9,16 @@
   --text-color2: rgb(255, 255, 255, 0.75);
   --text-color3: rgb(255, 255, 255, 0.55);
   --text-color4: rgb(255, 255, 255, 0.255);
-  --accent-color: #055A5A;
+  --accent-color: #3AAFA9;
   --warning-color: #e72222;
   --border-radius: 6px;
   --speed: 300ms;
   --depth: inset 0 -2px 0 rgb(255, 255, 255, 0.1);
+  --height: inset 0 -2px 0 rgb(0, 0, 0, 0.2);
   --depth-shadow: inset 0 2px 2px hsla(0, 0%, 0%, 0.1);
   --elevation: 0.8px 1.6px 1.6px hsl(0deg 0% 0% / 48);
-  --elevation2: 3.2px 6.4px 6.4px hsl(0deg 0% 0% / 20);
-  --elevation3: 8px 16px 16px hsl(0deg 0% 0% / 25);
+  --elevation2: 3.2px 6.4px 10px hsl(0deg 0% 0% / 20);
+  --elevation3: 8px 16px 24px hsl(0deg 0% 0% / 25);
 }
 
 html {
@@ -50,7 +52,7 @@ body {
 button {
   outline: none;
   border: none;
-  box-shadow: inset 0 -2px 0 rgb(255, 255, 255, 0.1);
+  box-shadow: var(--height);
 }
 
 a {

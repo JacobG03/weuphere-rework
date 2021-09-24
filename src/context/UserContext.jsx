@@ -31,7 +31,7 @@ const UserContextProvider = ({ children }) => {
   }, [])
 
   // returns boolean value
-  const signout = useCallback(() => {
+  const logout = useCallback(() => {
     postData('/api/user/logout', {})
     .then(result => {
       if(result.success) {
@@ -47,9 +47,9 @@ const UserContextProvider = ({ children }) => {
 
   const contextValue = useMemo(() => ({
     user,
-    signout,
+    logout,
     update
-  }), [user, signout, update])
+  }), [user, logout, update])
 
   return (
     <UserContext.Provider value={contextValue}>

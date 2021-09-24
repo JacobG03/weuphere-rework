@@ -1,6 +1,9 @@
-import React, { } from 'react'
+import React, { 
+  useState,
+} from 'react'
 import { 
-  Link
+  Link,
+  Redirect
 } from 'react-router-dom'
 import styles from './Navbar.module.css'
 import { motion } from 'framer-motion'
@@ -8,13 +11,13 @@ import { motion } from 'framer-motion'
 
 function Navbar(props) {
   const user = props.user
-
+  
   return (
     <nav className={styles['navbar']}>
       <div className={styles['wrapper']}>
         <div className={styles['content']}>
           <Logo />
-          {user ? <Auth user={user}/>: <UnAuth />}
+          {user ? <Auth user={user} logout={props.logout}/>: <UnAuth />}
         </div>
       </div>
     </nav>
@@ -25,9 +28,7 @@ function Navbar(props) {
 function Logo() {
   return (
     <Link to='/home'>
-      <motion.div 
-        className={styles['item']}
-      >
+      <motion.div className={styles['item']}>
         <span>We Up Here</span>
       </motion.div>
     </Link>
@@ -36,10 +37,38 @@ function Logo() {
 
 
 function Auth(props) {
-  // const user = props.user
+  const [menu, setMenu] = useState(false)
+  const user = props.user
+  console.log(user)
   
   return (
-    <div className={styles['item']}>Authenticated</div>
+    <div className={styles['items']}>
+      <div 
+        className={styles['item']}
+        onClick={() => setMenu(!menu)}
+      >
+        <img 
+          src={user.avatar}
+          className={styles['avatar']}
+          alt="User's Avatar"
+          />
+      </div>
+      {menu ? <Menu logout={props.logout}/>: null}
+    </div>
+  )
+}
+
+function Menu(props) {
+
+  return (
+    <div className={styles['menu']}>
+      <div 
+        className={styles['item']}
+        onClick={() => props.logout()}
+      >
+        <span>Logout</span>
+      </div>
+    </div>
   )
 }
 
