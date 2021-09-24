@@ -3,7 +3,6 @@ import React, {
 } from 'react'
 import { 
   Link,
-  Redirect
 } from 'react-router-dom'
 import styles from './Navbar.module.css'
 import { motion } from 'framer-motion'
