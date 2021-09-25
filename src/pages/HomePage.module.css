@@ -85,7 +85,7 @@
   background-color: var(--accent-color);
   border-radius: var(--border-radius);
   box-shadow: var(--height);
-  color: var(--text-color2);
+  color: var(--text-color);
   padding: 5px 5px;
 }
 
