@@ -1,0 +1,28 @@
+.content {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0px 10px;
+}
+
+.user {
+  flex-grow: 1;
+  min-width: 4rem;
+  max-width: 5rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--main-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--elevation2),
+              var(--height);
+}
+
+.user > img {
+  width: 3rem;
+  border-radius: var(--border-radius);
+}

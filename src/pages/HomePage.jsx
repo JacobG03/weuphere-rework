@@ -1,6 +1,7 @@
 import React, {
   useState,
   useEffect,
+  useRef
 } from 'react'
 import { 
   Link,
@@ -10,6 +11,8 @@ import {
 import styles from './HomePage.module.css'
 import UsersContent from '../components/HomeContent/UsersContent';
 import DefaultContent from '../components/HomeContent/DefaultContent';
+import { useForm } from 'react-hook-form';
+import { motion } from 'framer-motion';
 
 
 function HomePage() {
@@ -67,15 +70,40 @@ function Header(props) {
   )
 }
 
-function Searchbar() {
+function Searchbar(props) {
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => {
+    props.setInput(data.input)
+  }
+
   return (
-    <div className={styles['searchbar']}>
-      <input placeholder='Input here' />
-    </div>
+    <form 
+      className={styles['searchbar']}
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <input
+        autoComplete='off'
+        className={styles['search']}
+        placeholder='Search for users here'
+        {...register(
+          'input'
+        )}
+      />
+      <motion.input
+        value='Submit'
+        className={styles['submit']}
+        type='submit'
+        whileTap={{
+          transform: 'translateY(2px)',
+          boxShadow: 'rgba(0, 0, 0, 0.2) 0px 0px 0px 0px inset'
+        }}
+      />
+    </form>
   )
 }
 
 function Content(props) {
+  const [input, setInput] = useState('')
 
   return (
     <div className={styles['content']}>
@@ -84,15 +112,15 @@ function Content(props) {
           <DefaultContent setOption={props.setOption}/>
         </Route>
         <Route path='/home/users' exact>
-          <Searchbar />
-          <UsersContent />
+          <Searchbar setInput={setInput}/>
+          <UsersContent input={input}/>
         </Route>
         <Route path='/home/posts' exact>
-          <Searchbar />
+          <Searchbar setInput={setInput}/>
           <div>posts</div>
         </Route>
         <Route path='/home/events' exact>
-          <Searchbar />
+          <Searchbar setInput={setInput}/>
           <div>events</div>
         </Route>
       </Switch>

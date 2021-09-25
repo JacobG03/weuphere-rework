@@ -66,7 +66,7 @@ function LoginForm(props) {
         type='submit'
         whileTap={{
           transform: 'translateY(2px)',
-          boxShadow: 'rgba(255, 255, 255, 0.1) 0px 0px 0px 0px inset'
+          boxShadow: 'rgba(0, 0, 0, 0.2) 0px 0px 0px 0px inset'
         }}
       />
       <div className={styles['bottom']}>

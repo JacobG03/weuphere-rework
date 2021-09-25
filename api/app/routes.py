@@ -49,6 +49,7 @@ def user_login():
       }
     }
 
+
 @app.post('/api/user/logout')
 def user_logout():
   try:
@@ -59,4 +60,23 @@ def user_logout():
   
   logout_user()
   response = {'success': True}
+  return jsonify(response), 200
+
+
+
+@app.post('/home/users')
+def home_users():
+  users = []
+
+  for user in User.query.all():
+    users.append({
+      'id': user.id,
+      'username': user.username,
+      'avatar': user.image,
+    })
+  
+  response = {
+    'success': True,
+    'users': users
+  }
   return jsonify(response), 200
