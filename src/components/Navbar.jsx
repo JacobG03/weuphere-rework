@@ -13,7 +13,7 @@ function Navbar(props) {
   
   return (
     <nav className={styles['navbar']}>
-      <div className={styles['wrapper']}>
+      <div className='wrapper'>
         <div className={styles['content']}>
           <Logo />
           {user ? <Auth user={user} logout={props.logout}/>: <UnAuth />}
@@ -38,7 +38,6 @@ function Logo() {
 function Auth(props) {
   const [menu, setMenu] = useState(false)
   const user = props.user
-  console.log(user)
   
   return (
     <div className={styles['items']}>

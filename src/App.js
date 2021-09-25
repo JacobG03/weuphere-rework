@@ -3,14 +3,13 @@ import React, {
 } from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Link
 } from "react-router-dom";
 import { UserContext } from './context/UserContext';
 import Navbar from './components/Navbar';
-import LoginPage from './pages/LoginPage'
 import Notifications from './components/Notifications';
+import LoginPage from './pages/LoginPage'
+import HomePage from './pages/HomePage';
 
 
 function App() {
@@ -27,33 +26,13 @@ function App() {
         <Navbar user={user} logout={userContext.logout} />
         <Notifications />
         <div className={'container'}>
-          <Route path='/home'>
-            <Followed />
-            <Chat />
-
-            <Link to='/home/people'>
-              <div>People</div>
-            </Link>
-            <Link to='/home/posts'>
-              <div>Posts</div>
-            </Link>
-            <Link to='/home/events'>
-              <div>Events</div>
-            </Link>
-            <Switch>
-              <Route path='/home/people' exact>
-                <div>people</div>
-              </Route>
-              <Route path='/home/posts' exact>
-                <div>posts</div>
-              </Route>
-              <Route path='/home/events' exact>
-                <div>events</div>
-              </Route>
-            </Switch>
-          </Route>
+          <Followed />
+          <Chat />
           <Route path='/' exact>
             <>Welcome to We Up Here</>
+          </Route>
+          <Route path='/home'>
+            <HomePage />
           </Route>
           <Route path='/login' exact>
             <LoginPage />
@@ -64,55 +43,13 @@ function App() {
   );
 }
 
-/*
-function HomePage() {
-
-  return (
-    <div>
-      <Header>
-        <Link to='/home/people'>
-          <div>People</div>
-        </Link>
-        <Link to='/home/posts'>
-          <div>Posts</div>
-        </Link>
-        <Link to='/home/events'>
-          <div>Events</div>
-        </Link>
-      </Header>
-      <Content>
-        const [input, setInput] = useState(null)
-        <Search setInput/>
-        <Switch>
-          <Route path='/home/people' exact>
-            <PeopleContent input>
-              <People input/>
-              <Chat input/>
-            </PeopleContent>
-          </Route>
-          <Route path='/home/posts' exact>
-            <PostsContent /> ...
-          </Route>
-          <Route path='/home/events' exact>
-            <EventsContent /> ...
-          </Route>
-        </Switch>
-      </Content>
-    </div>
-  )
-}
-*/
-
 
 function Followed() {
-  return (
-    <>followed</>
-  )
+  return null
 }
 
 function Chat() {
-  return (
-    <>chat</>
-  )
+  return null
 }
+
 export default App;
