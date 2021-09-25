@@ -3,7 +3,6 @@
 
 
 function Notifications() {
-  console.log('Notifications')
   return null
 }
 export default Notifications;

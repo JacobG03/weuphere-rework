@@ -15,7 +15,6 @@ function LoginPage() {
   const userContext = useContext(UserContext);
 
   if (userContext.user !== null) {
-    console.log('Redirecting to home')
     return (
       <Redirect to='home' />
     )

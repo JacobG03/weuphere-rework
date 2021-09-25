@@ -1,12 +1,16 @@
-import React from 'react'
-import styles from './DefaultContent.module.css'
+import React, { useEffect } from 'react'
+// import styles from './DefaultContent.module.css'
 
 
-function DefaultContent() {
+function DefaultContent(props) {
   // if user logged in return some stats and cool data
   // if user logged out display login options
+  useEffect(() => {
+    props.setOption(null)
+  })
+
   return (
-    <>Default Content</>
+    <span style={{ color: 'black'}}>Default Content</span>
   )
 }
 
