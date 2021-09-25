@@ -84,7 +84,7 @@ function Searchbar(props) {
       <input
         autoComplete='off'
         className={styles['search']}
-        placeholder='Search for users here'
+        placeholder='Search for users here...'
         {...register(
           'input'
         )}

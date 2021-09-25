@@ -82,7 +82,7 @@
 .submit {
   height: 2rem;
   width: fit-content;
-  background-color: var(--main-color2);
+  background-color: var(--accent-color);
   border-radius: var(--border-radius);
   box-shadow: var(--height);
   color: var(--text-color2);
