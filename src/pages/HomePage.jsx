@@ -36,7 +36,6 @@ function Header(props) {
     // Decided which button should be highlited upon render
     let option = window.location.pathname.split('/')
     option = option.filter(String)
-    console.log(option)
     if (option.length > 1) {
       setOption(option[1])
     } else {
@@ -106,6 +105,10 @@ function Searchbar(props) {
 function Content(props) {
   const [input, setInput] = useState('')
 
+  useEffect(() => {
+
+  }, [input])
+
   return (
     <div className={styles['content']}>
       <Switch>
@@ -116,17 +119,15 @@ function Content(props) {
           <Searchbar setInput={setInput}/>
           <UsersContent input={input}/>
         </Route>
-        <Route path='/home/users/'>
+        <Route path='/home/users' exact>
           <Searchbar setInput={setInput}/>
           <UsersContent input={input}/>
         </Route>
         <Route path='/home/posts' exact>
           <Searchbar setInput={setInput}/>
-          <div>posts</div>
         </Route>
         <Route path='/home/events' exact>
           <Searchbar setInput={setInput}/>
-          <div>events</div>
         </Route>
       </Switch>
     </div>

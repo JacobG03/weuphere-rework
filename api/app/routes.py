@@ -66,14 +66,30 @@ def user_logout():
 
 @app.post('/home/users')
 def home_users():
+  if current_user.is_anonymous:
+    return {'success': False}, 200
+
   users = []
 
-  for user in User.query.all():
-    users.append({
-      'id': user.id,
-      'username': user.username,
-      'avatar': user.image,
-    })
+  query = request.get_json()['query']
+
+  # query with filter
+  if len(query) > 1:
+     for user in User.query.filter(User.username.contains(query)):
+      users.append({
+        'id': user.id,
+        'username': user.username,
+        'avatar': user.image,
+      })
+
+  else:
+    # default query
+    for user in User.query.all():
+      users.append({
+        'id': user.id,
+        'username': user.username,
+        'avatar': user.image,
+      })
   
   response = {
     'success': True,

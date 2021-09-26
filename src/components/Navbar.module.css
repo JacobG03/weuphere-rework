@@ -30,6 +30,7 @@
 .item {
   width: fit-content;
   color: var(--text-color);
+  cursor: default;
 }
 
 .avatar {
