@@ -1,28 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import styles from './UsersContent.module.css'
-import getData from '../../services/getData';
 import { motion } from 'framer-motion';
+import { 
+  Redirect,
+  Switch,
+  Route,
+  useRouteMatch,
+  useParams,
+  Link
+} from 'react-router-dom'
+import postData from '../../services/postData';
 
 
 function UsersContent(props) {
   const input = props.input;
   const [users, setUsers] = useState(null)
-  const [displayMore, setMore] = useState(null)
+
+  // User param: /home/users/jacob - username = jacob
+  const { username } = useParams()
 
   useEffect(() => {
-    getData('/home/users')
-    .then(response => response.json())
+    postData('/home/users', {'query': input})
     .then(response => setUsers(response.users.map((user) => 
-      <User 
-        key={user.id}
-        user={user}
-        displayMore ={displayMore}
-        setMore={setMore} 
-      />
-    )))
-    console.log('input changed')
-  }, [input, displayMore])
+      username === user.username ?
+        <UserMore user={user} key={user.id}/> : 
+        <UserDefault user={user} key={user.id}/>
+  )))
+  }, [username, input])
 
+  // Prevents unnecessary render
   if(users === null) {
     return null
   }
@@ -35,26 +41,23 @@ function UsersContent(props) {
 }
 
 
-function User(props) {
-  // if true display a bigger user window
-  const setMore = props.setMore
+function UserDefault(props) {
   const user = props.user;
-  const displayMore = props.displayMore
 
-  if(user.id !== displayMore) {
-    return (
-      <div
-        className={styles['user']}
-        onClick={() => setMore(user.id)}
-      >
-        <img src={user.avatar} alt='User Avatar' className={styles['avatar']}/>
-      </div>
-    )
-  }
   return (
-    <div
+    <Link to={`/home/users/${user.username}`} className={styles['user']}>
+      <img src={user.avatar} alt='User Avatar' className={styles['avatar']}/>
+    </Link>
+  )
+}
+
+function UserMore(props) {
+  const user = props.user;
+
+  return (
+    <Link 
       className={`${styles['user']} ${styles['more']}`}
-      onClick={() => setMore(null)}
+      to='/home/users'
     >
       <div className={styles['header']}>
         <div className={styles['header-left']}>
@@ -66,7 +69,7 @@ function User(props) {
       <div className={styles['main']}>
         Main Content
       </div>
-    </div>
+    </Link>
   )
 }
 

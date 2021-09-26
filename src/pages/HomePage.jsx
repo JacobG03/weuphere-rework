@@ -36,7 +36,8 @@ function Header(props) {
     // Decided which button should be highlited upon render
     let option = window.location.pathname.split('/')
     option = option.filter(String)
-    if (option.length === 2) {
+    console.log(option)
+    if (option.length > 1) {
       setOption(option[1])
     } else {
       setOption(null)
@@ -111,7 +112,11 @@ function Content(props) {
         <Route path='/home' exact>
           <DefaultContent setOption={props.setOption}/>
         </Route>
-        <Route path='/home/users' exact>
+        <Route path='/home/users/:username'>
+          <Searchbar setInput={setInput}/>
+          <UsersContent input={input}/>
+        </Route>
+        <Route path='/home/users/'>
           <Searchbar setInput={setInput}/>
           <UsersContent input={input}/>
         </Route>
