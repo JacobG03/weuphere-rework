@@ -1,11 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import styles from './UsersContent.module.css'
-import { motion } from 'framer-motion';
 import { 
   Redirect,
-  Switch,
-  Route,
-  useRouteMatch,
   useParams,
   Link
 } from 'react-router-dom'
