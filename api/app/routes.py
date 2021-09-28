@@ -74,7 +74,7 @@ def home_users():
   query = request.get_json()['query']
 
   # query with filter
-  if len(query) > 1:
+  if len(query) >= 1:
      for user in User.query.filter(User.username.contains(query)):
       users.append({
         'id': user.id,
