@@ -10,7 +10,7 @@ function DefaultContent(props) {
   })
 
   return (
-    <span style={{ color: 'black'}}>Default Content</span>
+    <span style={{ color: 'black'}}>Cool stats here</span>
   )
 }
 

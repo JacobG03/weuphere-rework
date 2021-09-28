@@ -59,11 +59,11 @@ function Header(props) {
         <span>Posts</span>
       </Link>
       <Link 
-        to='/home/events'
-        className={option === 'events' ? `${styles['header-item']} ${styles['highlited']}` :styles['header-item']}
-        onClick={() => setOption('events')}
+        to='/home/chat'
+        className={option === 'chat' ? `${styles['header-item']} ${styles['highlited']}` :styles['header-item']}
+        onClick={() => setOption('chat')}
       >
-        <span>Events</span>
+        <span>Chat</span>
       </Link>
     </div>
   )
@@ -83,7 +83,7 @@ function Searchbar(props) {
       <input
         autoComplete='off'
         className={styles['search']}
-        placeholder='Search for users here...'
+        placeholder='Search for users, posts or chat rooms..'
         {...register(
           'input'
         )}
@@ -125,7 +125,7 @@ function Content(props) {
         <Route path='/home/posts' exact>
           <Searchbar setInput={setInput}/>
         </Route>
-        <Route path='/home/events' exact>
+        <Route path='/home/chat' exact>
           <Searchbar setInput={setInput}/>
         </Route>
       </Switch>

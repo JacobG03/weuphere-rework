@@ -40,6 +40,8 @@ body {
   position: relative;
   width: 100vw;
   height: calc(100vh - 4rem);
+  display: flex;
+  flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -81,11 +83,12 @@ input {
 }
 
 @media only screen and (min-width : 768px) {
-
 }
 
 @media only screen and (min-width : 992px) {
-
+  .container {
+    flex-direction: row;
+  }
 }
 
 @media only screen and (min-width : 1200px) {
