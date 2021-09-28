@@ -33,6 +33,7 @@ class User(UserMixin, db.Model):   #UserMixin here
     about_me_short = db.Column(db.String(128), default='')
     about_me_long = db.Column(db.String(420), default='')
     custom_status = db.Column(db.String(32), default='')
+    location = db.Column(db.String(64), default='?')
 
     messages = db.relationship('Message',
                                 foreign_keys='Message.recipient_id',

@@ -8,8 +8,12 @@ import {
 import postData from '../../services/postData';
 import { UserContext } from '../../context/UserContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircle } from '@fortawesome/free-solid-svg-icons'
 import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons'
+import { faCircle, 
+  faMapMarker, 
+  faTimes 
+} from '@fortawesome/free-solid-svg-icons'
+import { motion } from 'framer-motion';
 
 
 function UsersContent(props) {
@@ -65,24 +69,36 @@ function UserMore(props) {
   console.log(user)
 
   return (
-    <Link 
+    <div 
       className={`${styles['user']} ${styles['more']}`}
-      to='/home/users'
     >
       <div className={styles['header']}>
-        <div className={styles['header-left']}>
+        <div className={styles['header_user']}>
           <img src={user.avatar} alt='User Avatar' className={styles['avatar']}/>
-          <span>{user.username}</span>
+          <span className={styles['username']}>{user.username}</span>
         </div>
-        <FontAwesomeIcon
-          icon={user.online ? faCircle: farCircle}
-          color={user.online ? '#00ff00': '#3aafa9a9'}
-          size='2x'/>
+        <span className={styles['status']}>{user.status}</span>
       </div>
       <div className={styles['main']}>
-        Main Content
+        <div className={styles['location']}>
+          <FontAwesomeIcon icon={faMapMarker}/>
+          <span>{user.location}</span>
+        </div>
       </div>
-    </Link>
+      <Link to='/home/users' className={styles['close']}>
+        <motion.div 
+          whileTap={{ 
+            scale: 0.9,
+            color: 'var(--accent-color)'
+          }}
+          whileHover={{
+            color: 'var(--accent-color)'
+          }}
+        >
+          <FontAwesomeIcon icon={faTimes} size='2x'/>
+        </motion.div>
+      </Link>
+    </div>
   )
 }
 

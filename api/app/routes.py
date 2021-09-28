@@ -85,6 +85,7 @@ def home_users():
         'avatar': user.image,
         'status': user.custom_status,
         'online': user.online,
+        'location': user.location
       })
 
   else:
@@ -96,6 +97,7 @@ def home_users():
         'avatar': user.image,
         'status': user.custom_status,
         'online': user.online,
+        'location': user.location
       })
   
   response = {
