@@ -7,6 +7,10 @@ import {
 } from 'react-router-dom'
 import postData from '../../services/postData';
 import { UserContext } from '../../context/UserContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons'
+
 
 function UsersContent(props) {
   const input = props.input;
@@ -58,6 +62,7 @@ function UserDefault(props) {
 
 function UserMore(props) {
   const user = props.user;
+  console.log(user)
 
   return (
     <Link 
@@ -69,7 +74,10 @@ function UserMore(props) {
           <img src={user.avatar} alt='User Avatar' className={styles['avatar']}/>
           <span>{user.username}</span>
         </div>
-        <span>Online</span>
+        <FontAwesomeIcon
+          icon={user.online ? faCircle: farCircle}
+          color={user.online ? '#00ff00': '#3aafa9a9'}
+          size='2x'/>
       </div>
       <div className={styles['main']}>
         Main Content

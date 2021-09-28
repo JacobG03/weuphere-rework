@@ -14,6 +14,8 @@ def user():
       'user': {
         'username': current_user.username,
         'avatar': current_user.image,
+        'status': current_user.custom_status,
+        'online': current_user.online,
       }
     }
   return {
@@ -63,6 +65,7 @@ def user_logout():
   return jsonify(response), 200
 
 
+#? Home routes ?#
 
 @app.post('/home/users')
 def home_users():
@@ -80,6 +83,8 @@ def home_users():
         'id': user.id,
         'username': user.username,
         'avatar': user.image,
+        'status': user.custom_status,
+        'online': user.online,
       })
 
   else:
@@ -89,6 +94,8 @@ def home_users():
         'id': user.id,
         'username': user.username,
         'avatar': user.image,
+        'status': user.custom_status,
+        'online': user.online,
       })
   
   response = {
