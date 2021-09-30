@@ -8,11 +8,24 @@ import {
 import postData from '../../services/postData';
 import { UserContext } from '../../context/UserContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons'
+import { 
+  faCircle as farCircle,
+  faStar as farStar,
+} from '@fortawesome/free-regular-svg-icons'
 import { faCircle, 
   faMapMarker, 
-  faTimes 
+  faTimes,
+  faStar,
+  faComment,
+  faStickyNote
 } from '@fortawesome/free-solid-svg-icons'
+import {
+  faDiscord,
+  faFacebookSquare,
+  faTwitterSquare,
+  faInstagramSquare,
+  faSteamSquare
+} from '@fortawesome/free-brands-svg-icons'
 import { motion } from 'framer-motion';
 
 
@@ -68,6 +81,7 @@ function UserMore(props) {
   const user = props.user;
   console.log(user)
 
+  // Static example
   return (
     <div 
       className={`${styles['user']} ${styles['more']}`}
@@ -76,13 +90,21 @@ function UserMore(props) {
         <div className={styles['header_user']}>
           <img src={user.avatar} alt='User Avatar' className={styles['avatar']}/>
           <span className={styles['username']}>{user.username}</span>
+          <div className={styles['location']}>
+            <FontAwesomeIcon icon={faMapMarker}/>
+            <span>{user.location}</span>
+          </div>
         </div>
-        <span className={styles['status']}>{user.status}</span>
       </div>
       <div className={styles['main']}>
-        <div className={styles['location']}>
-          <FontAwesomeIcon icon={faMapMarker}/>
-          <span>{user.location}</span>
+        <div className={styles['social']}>
+          <FontAwesomeIcon icon={faDiscord} />
+          <FontAwesomeIcon icon={faFacebookSquare} />
+          <FontAwesomeIcon icon={faTwitterSquare} />
+          <FontAwesomeIcon icon={faInstagramSquare} />
+          <FontAwesomeIcon icon={faSteamSquare} />
+          <FontAwesomeIcon icon={faSteamSquare} />
+          <FontAwesomeIcon icon={faSteamSquare} />
         </div>
       </div>
       <Link to='/home/users' className={styles['close']}>
@@ -95,9 +117,13 @@ function UserMore(props) {
             color: 'var(--accent-color)'
           }}
         >
-          <FontAwesomeIcon icon={faTimes} size='2x'/>
+          <FontAwesomeIcon icon={faTimes}/>
         </motion.div>
       </Link>
+      <div className={styles['actions']}>
+        <FontAwesomeIcon icon={farStar} />
+        <FontAwesomeIcon icon={faComment} />
+      </div>
     </div>
   )
 }
