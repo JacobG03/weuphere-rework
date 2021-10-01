@@ -12,6 +12,7 @@ import UsersContent from '../components/HomeContent/UsersContent';
 import DefaultContent from '../components/HomeContent/DefaultContent';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
+import Chat from '../components/HomeContent/Chat'
 
 
 function HomePage() {
@@ -23,6 +24,40 @@ function HomePage() {
         <Header option={option} setOption={setOption}/>
         <Content option={option} setOption={setOption}/>
       </div>
+    </div>
+  )
+}
+
+
+function Content(props) {
+  const [input, setInput] = useState('')
+
+  useEffect(() => {
+
+  }, [input])
+
+  return (
+    <div className={styles['content']}>
+      <Switch>
+        <Route path='/home' exact>
+          <DefaultContent setOption={props.setOption}/>
+        </Route>
+        <Route path='/home/users/:username'>
+          <Searchbar setInput={setInput}/>
+          <UsersContent input={input}/>
+        </Route>
+        <Route path='/home/users' exact>
+          <Searchbar setInput={setInput}/>
+          <UsersContent input={input}/>
+        </Route>
+        <Route path='/home/posts' exact>
+          <Searchbar setInput={setInput}/>
+        </Route>
+        <Route path='/home/chat' exact>
+          <Searchbar setInput={setInput}/>
+          <Chat input={input} />
+        </Route>
+      </Switch>
     </div>
   )
 }
@@ -101,36 +136,5 @@ function Searchbar(props) {
   )
 }
 
-function Content(props) {
-  const [input, setInput] = useState('')
-
-  useEffect(() => {
-
-  }, [input])
-
-  return (
-    <div className={styles['content']}>
-      <Switch>
-        <Route path='/home' exact>
-          <DefaultContent setOption={props.setOption}/>
-        </Route>
-        <Route path='/home/users/:username'>
-          <Searchbar setInput={setInput}/>
-          <UsersContent input={input}/>
-        </Route>
-        <Route path='/home/users' exact>
-          <Searchbar setInput={setInput}/>
-          <UsersContent input={input}/>
-        </Route>
-        <Route path='/home/posts' exact>
-          <Searchbar setInput={setInput}/>
-        </Route>
-        <Route path='/home/chat' exact>
-          <Searchbar setInput={setInput}/>
-        </Route>
-      </Switch>
-    </div>
-  )
-}
 
 export default HomePage;

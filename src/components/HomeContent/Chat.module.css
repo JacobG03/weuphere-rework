@@ -1,0 +1,88 @@
+.chat {
+  margin-top: 0.5rem;
+  height: 62vh;
+  width: 100%;
+  background-color: var(--main-color);
+  border-radius: var(--border-radius);
+}
+
+.header {
+  width: calc(100% - 20px);
+  height: fit-content;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.room {
+  color: var(--accent-color);
+}
+
+.messages {
+  height: calc(90% - 20px);
+  width: calc(100% - 20px);
+  padding: 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+}
+
+.message {
+  position: relative;
+  width: calc(100% - 10px);
+  height: fit-content;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  background-color: var(--main-color-dark);
+  border-radius: var(--border-radius);
+  gap: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.avatar {
+  width: fit-content;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.avatar > img {
+  width: 2rem;
+  border-radius: var(--border-radius);
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.top {
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.username {
+  font: bolder;
+  color: var(--accent-color);
+}
+
+.date {
+  font-size: 0.7rem;
+  color: var(--text-color4)
+}
+
+.msg {
+  word-wrap: break-word;
+}
