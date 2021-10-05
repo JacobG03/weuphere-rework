@@ -1,12 +1,21 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReply } from '@fortawesome/free-solid-svg-icons';
 import React, {
+  useEffect,
   useState
 } from 'react'
 import styles from './Chat.module.css'
+import { useForm } from 'react-hook-form'
+import { motion } from 'framer-motion'
 
 
 function Chat(props) {
+  const { register, handleSubmit } = useForm();
+  const onSubmit = data => {
+    console.log(data)
+  };
+
+  
   console.log(props)
   return (
     <div className={styles['chat']}>
@@ -24,6 +33,23 @@ function Chat(props) {
           </div>
         </div>
       </div>
+      <form 
+        onSubmit={handleSubmit(onSubmit)}
+        className={styles['form']}
+      >
+        <input
+          className={styles['msgBox']}
+          {...register('msg', { required: true })} 
+        />        
+        <motion.input
+          whileTap={{ 
+            boxShadow: 'rgba(255, 255, 255, 0.1) 0px 0px 0px 0px inset',
+            transform: 'translateY(2px)'
+          }}
+          className={styles['submit']}
+          type='submit'
+        />
+      </form>
     </div>
   )
 }
