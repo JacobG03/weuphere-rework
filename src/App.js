@@ -10,7 +10,10 @@ import Navbar from './components/Navbar';
 import Notifications from './components/Notifications';
 import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage';
+import io from 'socket.io-client'
 
+
+export const socket = io('localhost:5000/');
 
 function App() {
   const userContext = useContext(UserContext);

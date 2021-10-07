@@ -1,47 +1,31 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReply } from '@fortawesome/free-solid-svg-icons';
 import React, {
-<<<<<<< HEAD
   useState,
   useEffect
 } from 'react'
 import styles from './Chat.module.css'
-import io from 'socket.io-client'
-
-function Chat(props) {
-  const [data, setData] = useState([])
-  const user_input = props.input
-
-  var socket = io('http://127.0.0.1:3000/home/chat')
-  
-  useEffect(() => {
-    socket.on('sendMessage', data => {
-      console.log(data)
-    })
-  })
-
-  const sendMessage = message => {
-    socket.emit('message', message)
-  }
-
-=======
-  useEffect,
-  useState
-} from 'react'
-import styles from './Chat.module.css'
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion'
+import { socket } from '../../App'
 
 
 function Chat(props) {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit} = useForm();
   const onSubmit = data => {
-    console.log(data)
   };
-
   
-  console.log(props)
->>>>>>> 6f34ab042918a39a7d3ea64a50b7652d574c5fc2
+  useEffect(() => {
+    socket.on('send:message', data => {
+      console.log(data)
+    })
+  }, [])
+
+  const sendMessage = message => {
+    console.log('message emited')
+    socket.emit('receive:message', message)
+  }
+  
   return (
     <div className={styles['chat']}>
       <div className={styles['messages']}>
