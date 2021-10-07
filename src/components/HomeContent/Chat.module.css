@@ -5,6 +5,8 @@
   height: 70%;
   background-color: var(--main-color);
   border-radius: var(--border-radius);
+  box-shadow: var(--elevation3),
+              var(--height);
 }
 
 .messages {

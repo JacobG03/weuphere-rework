@@ -28,7 +28,7 @@
 }
 
 .header-item > span {
-  color: var(--main-color);
+  color: var(--text-color2);
 }
 
 .header-item.highlited {
