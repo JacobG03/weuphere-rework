@@ -39,7 +39,7 @@ body {
 .container {
   position: relative;
   width: 100vw;
-  height: calc(100vh - 4rem);
+  min-height: calc(100vh - 4rem);
   display: flex;
   flex-direction: column;
   overflow-y: auto;
