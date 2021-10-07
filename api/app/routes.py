@@ -1,4 +1,4 @@
-from app import app
+from app import app, db
 from flask import request, jsonify
 from flask_login import current_user, logout_user, login_user
 from app.models import User
@@ -85,7 +85,8 @@ def home_users():
         'avatar': user.image,
         'status': user.custom_status,
         'online': user.online,
-        'location': user.location
+        'location': user.location,
+        'followed': current_user.is_following(user)
       })
 
   else:
@@ -97,7 +98,8 @@ def home_users():
         'avatar': user.image,
         'status': user.custom_status,
         'online': user.online,
-        'location': user.location
+        'location': user.location,
+        'followed': current_user.is_following(user)
       })
   
   response = {
@@ -105,3 +107,19 @@ def home_users():
     'users': users
   }
   return jsonify(response), 200
+
+
+@app.post('/api/users/<user>/follow')
+def follow_user(user):
+  if current_user.is_anonymous:
+    return {'success': False}, 200
+
+  user = User.query.filter_by(username=user).first()
+  if user:
+    print(user.username)
+    current_user.follow(user)
+    db.session.add(current_user)
+    db.session.commit()
+    return {'success': True}
+
+  return {'success': False}

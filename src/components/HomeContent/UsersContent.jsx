@@ -79,7 +79,9 @@ function UserDefault(props) {
 
 function UserMore(props) {
   const user = props.user;
+  const [followed, setFollow] = useState(user.followed)
   console.log(user)
+  console.log(followed)
 
   // Static example
   return (
@@ -121,7 +123,12 @@ function UserMore(props) {
         </motion.div>
       </Link>
       <div className={styles['actions']}>
-        <FontAwesomeIcon icon={farStar} />
+        <FontAwesomeIcon 
+          icon={followed ? faStar: farStar}
+          onClick={() => {
+            postData('/follow')
+            setFollow(!followed)
+        }}/>
         <FontAwesomeIcon icon={faComment} />
       </div>
     </div>
